@@ -1,0 +1,22 @@
+{
+    "schemaVersion": 1,
+    "id": "fairlands",
+    "version": "${version}",
+    "name": "Fairlands",
+    "description": "Server-side survival rules for fair deaths, protected spawns, balanced PVP, and exploration-driven worlds.",
+    "authors": ["Aqu1tain"],
+    "contact": {
+        "sources": "https://github.com/Aqu1tain/fairlands"
+    },
+    "license": "CC-BY-NC-SA-4.0",
+    "environment": "*",
+    "entrypoints": {
+        "main": ["com.akitain.fairlands.Fairlands"]
+    },
+    "depends": {
+        "fabricloader": ">=0.19.2",
+        "minecraft": "26.1.2",
+        "java": ">=25",
+        "fabric-api": "*"
+    }
+}
