@@ -7,5 +7,6 @@
 - Added server-focused mod metadata and roadmap documentation.
 - Added MidnightLib as the bundled config dependency.
 - Added Partial KeepInventory for equipped armor, tools, weapons, allowlisted items, and the `fairlands:keep_on_death` item tag.
+- Added empty maps and filled maps to the default kept items.
 - Added Exploration Reloaded Map Book compatibility for Partial KeepInventory.
 - Added configurable death penalty effect after respawn.

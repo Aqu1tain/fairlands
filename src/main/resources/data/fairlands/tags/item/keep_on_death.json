@@ -1,6 +1,8 @@
 {
     "replace": false,
     "values": [
+        "minecraft:map",
+        "minecraft:filled_map",
         {
             "id": "exploration-reloaded:map_book",
             "required": false

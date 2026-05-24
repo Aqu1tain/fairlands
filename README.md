@@ -11,6 +11,7 @@ The first death rules module is implemented. Remaining gameplay systems are trac
 ## Implemented
 
 - Partial KeepInventory keeps equipped armor, tools, weapons, configured allowlisted items, and items tagged `fairlands:keep_on_death`.
+- Empty maps and filled maps are kept by default.
 - Exploration Reloaded's Map Book is kept by default when Exploration Reloaded is installed.
 - Normal inventory items still drop on death.
 - Death applies a configurable negative effect after respawn.
