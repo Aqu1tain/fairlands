@@ -5,7 +5,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.storage.LevelData;
 
 public final class SpawnSetupRules {
@@ -27,7 +26,7 @@ public final class SpawnSetupRules {
 
     public static void sendBlockedRespawnMessage(ServerPlayer player) {
         int radius = FairlandsGameRules.respawnSetupRadius(player.level());
-        player.sendSystemMessage(Component.translatable("message.fairlands.respawn_setup_restricted", radius));
+        player.sendSystemMessage(Component.literal("Respawn point unchanged: it must be within " + radius + " blocks of world spawn."));
     }
 
     private static boolean isWithinAllowedRadius(ServerLevel level, LevelData.RespawnData respawnData) {
