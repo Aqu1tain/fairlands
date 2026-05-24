@@ -9,6 +9,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 
 public final class SpawnProtectionRules {
     private static final Component PROTECTED_SPAWN_MESSAGE = Component.literal("Spawn is protected.");
@@ -22,6 +23,14 @@ public final class SpawnProtectionRules {
 
     public static boolean protectsExplosion(ServerLevel level, double x, double y, double z) {
         return explosionProtectionEnabled(level) && isProtected(level, BlockPos.containing(x, y, z));
+    }
+
+    public static boolean blocksWitherSpawn(Level level, BlockPos pos) {
+        if (!(level instanceof ServerLevel serverLevel)) {
+            return false;
+        }
+
+        return isProtected(serverLevel, pos);
     }
 
     private static boolean canDamageEntity(LivingEntity entity, net.minecraft.world.damagesource.DamageSource source, float amount) {
