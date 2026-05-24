@@ -10,7 +10,7 @@ The mod currently contains the project skeleton only. Gameplay systems are track
 
 ## Planned Scope
 
-- Partial KeepInventory: keep tools, weapons, and armor on death while dropping the rest of the inventory.
+- Partial KeepInventory: keep equipped armor, tools, weapons, configured allowlisted items, and Exploration Reloaded's Map Book while dropping the rest of the inventory.
 - Death penalty: apply a temporary negative effect after death.
 - Spawn sanctuary: block PVP, TNT, crystal damage, destructive explosions, and grief interactions inside a configured spawn radius.
 - Spawn setup rules: restrict beds and respawn anchors to an allowed area around world spawn.
