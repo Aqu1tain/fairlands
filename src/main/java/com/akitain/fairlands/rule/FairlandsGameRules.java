@@ -103,6 +103,11 @@ public final class FairlandsGameRules {
             .category(GameRuleCategory.PLAYER)
             .buildAndRegister(Fairlands.id("spear_player_damage_cap"));
 
+    public static final GameRule<Boolean> HIDE_INVISIBLE_PLAYERS_FROM_TAB = GameRuleBuilder
+            .forBoolean(true)
+            .category(GameRuleCategory.PLAYER)
+            .buildAndRegister(Fairlands.id("hide_invisible_players_from_tab"));
+
     private FairlandsGameRules() {
     }
 
@@ -173,5 +178,9 @@ public final class FairlandsGameRules {
 
     public static int spearPlayerDamageCap(ServerLevel level) {
         return Math.max(0, level.getGameRules().get(SPEAR_PLAYER_DAMAGE_CAP));
+    }
+
+    public static boolean hideInvisiblePlayersFromTabEnabled(ServerLevel level) {
+        return level.getGameRules().get(HIDE_INVISIBLE_PLAYERS_FROM_TAB);
     }
 }

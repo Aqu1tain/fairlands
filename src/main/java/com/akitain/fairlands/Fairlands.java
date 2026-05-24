@@ -5,6 +5,7 @@ import com.akitain.fairlands.feedback.FeedbackCommand;
 import com.akitain.fairlands.death.DeathRules;
 import com.akitain.fairlands.rule.FairlandsGameRules;
 import com.akitain.fairlands.spawn.SpawnProtectionRules;
+import com.akitain.fairlands.visibility.TabVisibilityRules;
 import eu.midnightdust.lib.config.MidnightConfig;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.resources.Identifier;
@@ -18,6 +19,7 @@ public final class Fairlands implements ModInitializer {
         FairlandsGameRules.register();
         DeathRules.register();
         SpawnProtectionRules.register();
+        TabVisibilityRules.register();
         FeedbackCommand.register();
     }
 

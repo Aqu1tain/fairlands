@@ -4,6 +4,7 @@
     "gamerule.fairlands:death_xp_drop_cap": "Fairlands death XP drop cap",
     "gamerule.fairlands:death_xp_keep_percent": "Fairlands death XP keep percent",
     "gamerule.fairlands:end_crystal_player_damage_cap": "Fairlands End crystal player damage cap",
+    "gamerule.fairlands:hide_invisible_players_from_tab": "Fairlands hide invisible players from tab",
     "gamerule.fairlands:mace_smash_player_damage_cap": "Fairlands mace smash player damage cap",
     "gamerule.fairlands:partial_keep_inventory": "Fairlands partial keep inventory",
     "gamerule.fairlands:restrict_respawn_setup": "Fairlands restrict respawn setup",

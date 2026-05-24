@@ -3,10 +3,12 @@
     "package": "com.akitain.fairlands.mixin",
     "compatibilityLevel": "JAVA_25",
     "mixins": [
+        "ClientboundPlayerInfoUpdatePacketAccessor",
         "CreeperMixin",
         "LivingEntityMixin",
         "PlayerMixin",
         "ServerLevelMixin",
+        "ServerPlayerVisibilityMixin",
         "ServerPlayerMixin",
         "WitherSkullBlockMixin"
     ],
