@@ -35,6 +35,22 @@ public final class CombatRules {
         return Math.min(amount, FairlandsGameRules.tntMinecartPlayerDamageCap(level));
     }
 
+    public static float capMaceSmashPlayerDamage(ServerLevel level, DamageSource source, float amount) {
+        if (!source.is(DamageTypes.MACE_SMASH)) {
+            return amount;
+        }
+
+        return Math.min(amount, FairlandsGameRules.maceSmashPlayerDamageCap(level));
+    }
+
+    public static float capSpearPlayerDamage(ServerLevel level, DamageSource source, float amount) {
+        if (!source.is(DamageTypes.SPEAR)) {
+            return amount;
+        }
+
+        return Math.min(amount, FairlandsGameRules.spearPlayerDamageCap(level));
+    }
+
     private static boolean isEndCrystalDamage(DamageSource source) {
         return source.getDirectEntity() instanceof EndCrystal || source.getEntity() instanceof EndCrystal;
     }

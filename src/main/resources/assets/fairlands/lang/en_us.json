@@ -4,6 +4,7 @@
     "gamerule.fairlands:death_xp_drop_cap": "Fairlands death XP drop cap",
     "gamerule.fairlands:death_xp_keep_percent": "Fairlands death XP keep percent",
     "gamerule.fairlands:end_crystal_player_damage_cap": "Fairlands End crystal player damage cap",
+    "gamerule.fairlands:mace_smash_player_damage_cap": "Fairlands mace smash player damage cap",
     "gamerule.fairlands:partial_keep_inventory": "Fairlands partial keep inventory",
     "gamerule.fairlands:restrict_respawn_setup": "Fairlands restrict respawn setup",
     "gamerule.fairlands:respawn_anchor_player_damage_cap": "Fairlands respawn anchor player damage cap",
@@ -13,6 +14,7 @@
     "gamerule.fairlands:spawn_protection_grief": "Fairlands spawn protection explosions",
     "gamerule.fairlands:spawn_protection_pvp": "Fairlands spawn protection PVP",
     "gamerule.fairlands:spawn_protection_radius": "Fairlands spawn protection radius",
+    "gamerule.fairlands:spear_player_damage_cap": "Fairlands spear player damage cap",
     "gamerule.fairlands:tnt_minecart_player_damage_cap": "Fairlands TNT minecart player damage cap",
     "message.fairlands.respawn_setup_restricted": "Your respawn point must be within %s blocks of world spawn.",
     "tag.item.fairlands.keep_on_death": "Kept on death"

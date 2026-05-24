@@ -91,6 +91,18 @@ public final class FairlandsGameRules {
             .category(GameRuleCategory.PLAYER)
             .buildAndRegister(Fairlands.id("tnt_minecart_player_damage_cap"));
 
+    public static final GameRule<Integer> MACE_SMASH_PLAYER_DAMAGE_CAP = GameRuleBuilder
+            .forInteger(16)
+            .range(0, 100)
+            .category(GameRuleCategory.PLAYER)
+            .buildAndRegister(Fairlands.id("mace_smash_player_damage_cap"));
+
+    public static final GameRule<Integer> SPEAR_PLAYER_DAMAGE_CAP = GameRuleBuilder
+            .forInteger(14)
+            .range(0, 100)
+            .category(GameRuleCategory.PLAYER)
+            .buildAndRegister(Fairlands.id("spear_player_damage_cap"));
+
     private FairlandsGameRules() {
     }
 
@@ -153,5 +165,13 @@ public final class FairlandsGameRules {
 
     public static int tntMinecartPlayerDamageCap(ServerLevel level) {
         return Math.max(0, level.getGameRules().get(TNT_MINECART_PLAYER_DAMAGE_CAP));
+    }
+
+    public static int maceSmashPlayerDamageCap(ServerLevel level) {
+        return Math.max(0, level.getGameRules().get(MACE_SMASH_PLAYER_DAMAGE_CAP));
+    }
+
+    public static int spearPlayerDamageCap(ServerLevel level) {
+        return Math.max(0, level.getGameRules().get(SPEAR_PLAYER_DAMAGE_CAP));
     }
 }
