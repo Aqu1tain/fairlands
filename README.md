@@ -6,12 +6,17 @@ Fairlands is a server-focused Fabric mod for Minecraft 26.1.x. It is intended to
 
 This repository is initialized for Minecraft 26.1.2, Fabric Loader 0.19.2, Fabric API 0.149.1+26.1.2, Loom 1.16.1, Mojang mappings, and Java 25.
 
-The mod currently contains the project skeleton only. Gameplay systems are tracked in the roadmap below and should be implemented as small, configurable server-side modules.
+The first death rules module is implemented. Remaining gameplay systems are tracked in the roadmap below and should be implemented as small, configurable server-side modules.
+
+## Implemented
+
+- Partial KeepInventory keeps equipped armor, tools, weapons, configured allowlisted items, and items tagged `fairlands:keep_on_death`.
+- Exploration Reloaded's Map Book is kept by default when Exploration Reloaded is installed.
+- Normal inventory items still drop on death.
+- Death applies a configurable negative effect after respawn.
 
 ## Planned Scope
 
-- Partial KeepInventory: keep equipped armor, tools, weapons, configured allowlisted items, and Exploration Reloaded's Map Book while dropping the rest of the inventory.
-- Death penalty: apply a temporary negative effect after death.
 - Spawn sanctuary: block PVP, TNT, crystal damage, destructive explosions, and grief interactions inside a configured spawn radius.
 - Spawn setup rules: restrict beds and respawn anchors to an allowed area around world spawn.
 - Creeper rules: prevent creepers from breaking blocks while keeping them dangerous with a slightly larger explosion radius.
@@ -40,6 +45,19 @@ Use JDK 25 for Minecraft 26.1.x development.
 ```
 
 Fairlands bundles MidnightLib for server config.
+
+## Config
+
+Fairlands writes its config through MidnightLib. The first configurable options are:
+
+- `partialKeepInventoryEnabled`
+- `keepEquippedArmor`
+- `keepToolsAndWeapons`
+- `keepOnDeathAllowlist`
+- `deathPenaltyEnabled`
+- `deathPenaltyEffect`
+- `deathPenaltyDurationSeconds`
+- `deathPenaltyAmplifier`
 
 ## Documentation References
 

@@ -6,3 +6,6 @@
 - Added Fabric Loader, Fabric API, Loom, Gradle, and Java 25 project setup.
 - Added server-focused mod metadata and roadmap documentation.
 - Added MidnightLib as the bundled config dependency.
+- Added Partial KeepInventory for equipped armor, tools, weapons, allowlisted items, and the `fairlands:keep_on_death` item tag.
+- Added Exploration Reloaded Map Book compatibility for Partial KeepInventory.
+- Added configurable death penalty effect after respawn.
