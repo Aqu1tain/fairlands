@@ -1,7 +1,6 @@
 package com.akitain.fairlands.spawn;
 
 import com.akitain.fairlands.rule.FairlandsGameRules;
-import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -30,18 +29,7 @@ public final class SpawnSetupRules {
     }
 
     private static boolean isWithinAllowedRadius(ServerLevel level, LevelData.RespawnData respawnData) {
-        BlockPos worldSpawn = level.getServer().overworld().getRespawnData().pos();
-        BlockPos requestedSpawn = respawnData.pos();
         int radius = FairlandsGameRules.respawnSetupRadius(level);
-        long maxDistanceSquared = (long) radius * radius;
-        long distanceSquared = horizontalDistanceSquared(worldSpawn, requestedSpawn);
-
-        return distanceSquared <= maxDistanceSquared;
-    }
-
-    private static long horizontalDistanceSquared(BlockPos origin, BlockPos target) {
-        long xOffset = (long) target.getX() - origin.getX();
-        long zOffset = (long) target.getZ() - origin.getZ();
-        return xOffset * xOffset + zOffset * zOffset;
+        return SpawnAreaRules.isWithinRadius(level, respawnData.pos(), radius);
     }
 }

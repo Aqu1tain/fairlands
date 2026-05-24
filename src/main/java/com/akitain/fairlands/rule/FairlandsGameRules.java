@@ -47,6 +47,27 @@ public final class FairlandsGameRules {
             .category(GameRuleCategory.MOBS)
             .buildAndRegister(Fairlands.id("creeper_explosion_radius_bonus"));
 
+    public static final GameRule<Boolean> SPAWN_PROTECTION = GameRuleBuilder
+            .forBoolean(true)
+            .category(GameRuleCategory.PLAYER)
+            .buildAndRegister(Fairlands.id("spawn_protection"));
+
+    public static final GameRule<Integer> SPAWN_PROTECTION_RADIUS = GameRuleBuilder
+            .forInteger(2000)
+            .range(0, 100000)
+            .category(GameRuleCategory.PLAYER)
+            .buildAndRegister(Fairlands.id("spawn_protection_radius"));
+
+    public static final GameRule<Boolean> SPAWN_PROTECTION_PVP = GameRuleBuilder
+            .forBoolean(true)
+            .category(GameRuleCategory.PLAYER)
+            .buildAndRegister(Fairlands.id("spawn_protection_pvp"));
+
+    public static final GameRule<Boolean> SPAWN_PROTECTION_GRIEF = GameRuleBuilder
+            .forBoolean(true)
+            .category(GameRuleCategory.PLAYER)
+            .buildAndRegister(Fairlands.id("spawn_protection_grief"));
+
     private FairlandsGameRules() {
     }
 
@@ -80,5 +101,21 @@ public final class FairlandsGameRules {
 
     public static int creeperExplosionRadiusBonus(ServerLevel level) {
         return Math.max(0, level.getGameRules().get(CREEPER_EXPLOSION_RADIUS_BONUS));
+    }
+
+    public static boolean spawnProtectionEnabled(ServerLevel level) {
+        return level.getGameRules().get(SPAWN_PROTECTION);
+    }
+
+    public static int spawnProtectionRadius(ServerLevel level) {
+        return Math.max(0, level.getGameRules().get(SPAWN_PROTECTION_RADIUS));
+    }
+
+    public static boolean spawnProtectionPvpEnabled(ServerLevel level) {
+        return level.getGameRules().get(SPAWN_PROTECTION_PVP);
+    }
+
+    public static boolean spawnProtectionGriefEnabled(ServerLevel level) {
+        return level.getGameRules().get(SPAWN_PROTECTION_GRIEF);
     }
 }

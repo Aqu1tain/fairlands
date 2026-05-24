@@ -5,6 +5,7 @@
     "mixins": [
         "CreeperMixin",
         "PlayerMixin",
+        "ServerLevelMixin",
         "ServerPlayerMixin"
     ],
     "injectors": {
