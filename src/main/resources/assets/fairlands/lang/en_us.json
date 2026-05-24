@@ -1,0 +1,6 @@
+{
+    "gamerule.fairlands:death_xp_drop_cap": "Fairlands death XP drop cap",
+    "gamerule.fairlands:death_xp_keep_percent": "Fairlands death XP keep percent",
+    "gamerule.fairlands:partial_keep_inventory": "Fairlands partial keep inventory",
+    "tag.item.fairlands.keep_on_death": "Kept on death"
+}

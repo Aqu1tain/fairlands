@@ -1,6 +1,7 @@
 package com.akitain.fairlands.death;
 
 import com.akitain.fairlands.config.FairlandsConfig;
+import com.akitain.fairlands.rule.FairlandsGameRules;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -14,7 +15,6 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.gamerules.GameRules;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,7 +23,7 @@ import java.util.Map;
 import java.util.UUID;
 
 public final class DeathRules {
-    private static final Map<UUID, List<KeptItem>> PENDING_KEPT_ITEMS = new HashMap<>();
+    private static final Map<UUID, PendingDeathRules> PENDING_DEATH_RULES = new HashMap<>();
 
     private DeathRules() {
     }
@@ -44,9 +44,9 @@ public final class DeathRules {
     }
 
     private static void captureKeptItems(ServerPlayer player) {
-        restoreKeptItems(player);
+        restorePendingItems(player);
 
-        if (!FairlandsConfig.partialKeepInventoryEnabled || shouldRespectVanillaKeepInventory(player)) {
+        if (!FairlandsGameRules.partialKeepInventoryEnabled(player.level())) {
             return;
         }
 
@@ -63,16 +63,13 @@ public final class DeathRules {
             inventory.setItem(slot, ItemStack.EMPTY);
         }
 
-        if (keptItems.isEmpty()) {
+        int keptExperience = calculateKeptExperience(player);
+        if (keptItems.isEmpty() && keptExperience <= 0) {
             return;
         }
 
         inventory.setChanged();
-        PENDING_KEPT_ITEMS.put(player.getUUID(), keptItems);
-    }
-
-    private static boolean shouldRespectVanillaKeepInventory(ServerPlayer player) {
-        return player.level().getGameRules().get(GameRules.KEEP_INVENTORY);
+        PENDING_DEATH_RULES.put(player.getUUID(), new PendingDeathRules(keptItems, keptExperience));
     }
 
     private static boolean shouldKeepItem(int slot, ItemStack stack) {
@@ -128,17 +125,52 @@ public final class DeathRules {
     }
 
     private static void restoreKeptItems(ServerPlayer player) {
-        List<KeptItem> keptItems = PENDING_KEPT_ITEMS.remove(player.getUUID());
-        if (keptItems == null) {
+        PendingDeathRules pendingRules = PENDING_DEATH_RULES.remove(player.getUUID());
+        if (pendingRules == null) {
             return;
         }
 
+        restoreKeptItems(player, pendingRules.keptItems());
+        restoreKeptExperience(player, pendingRules.keptExperience());
+    }
+
+    private static void restorePendingItems(ServerPlayer player) {
+        PendingDeathRules pendingRules = PENDING_DEATH_RULES.remove(player.getUUID());
+        if (pendingRules == null) {
+            return;
+        }
+
+        restoreKeptItems(player, pendingRules.keptItems());
+    }
+
+    private static void restoreKeptItems(ServerPlayer player, List<KeptItem> keptItems) {
         Inventory inventory = player.getInventory();
         for (KeptItem keptItem : keptItems) {
             restoreKeptItem(player, inventory, keptItem);
         }
 
         inventory.setChanged();
+    }
+
+    private static int calculateKeptExperience(ServerPlayer player) {
+        int keptPercent = FairlandsGameRules.deathXpKeepPercent(player.level());
+        int percentageKeptExperience = Math.floorDiv(player.totalExperience * keptPercent, 100);
+        int maximumKeptExperience = player.totalExperience - expectedDeathExperienceDrop(player);
+        return Math.clamp(percentageKeptExperience, 0, Math.max(0, maximumKeptExperience));
+    }
+
+    private static int expectedDeathExperienceDrop(ServerPlayer player) {
+        int uncappedReward = player.experienceLevel * 7;
+        int cappedReward = Math.min(uncappedReward, FairlandsGameRules.deathXpDropCap(player.level()));
+        return Math.min(cappedReward, player.totalExperience);
+    }
+
+    private static void restoreKeptExperience(ServerPlayer player, int keptExperience) {
+        if (keptExperience <= 0) {
+            return;
+        }
+
+        player.giveExperiencePoints(keptExperience);
     }
 
     private static void restoreKeptItem(ServerPlayer player, Inventory inventory, KeptItem keptItem) {
@@ -179,5 +211,8 @@ public final class DeathRules {
     }
 
     private record KeptItem(int slot, ItemStack stack) {
+    }
+
+    private record PendingDeathRules(List<KeptItem> keptItems, int keptExperience) {
     }
 }

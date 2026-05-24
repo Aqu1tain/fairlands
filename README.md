@@ -15,6 +15,9 @@ The first death rules module is implemented. Remaining gameplay systems are trac
 - Exploration Reloaded's Map Book is kept by default when Exploration Reloaded is installed.
 - Normal inventory items still drop on death.
 - Death applies a configurable negative effect after respawn.
+- `fairlands:partial_keep_inventory` enables the death rules by default per world.
+- Death XP drops are capped by `fairlands:death_xp_drop_cap`.
+- A percentage of total XP is restored after respawn with `fairlands:death_xp_keep_percent`.
 
 ## Planned Scope
 
@@ -59,6 +62,14 @@ Fairlands writes its config through MidnightLib. The first configurable options 
 - `deathPenaltyEffect`
 - `deathPenaltyDurationSeconds`
 - `deathPenaltyAmplifier`
+
+## Gamerules
+
+```mcfunction
+/gamerule fairlands:partial_keep_inventory true
+/gamerule fairlands:death_xp_drop_cap 1000
+/gamerule fairlands:death_xp_keep_percent 50
+```
 
 ## Documentation References
 

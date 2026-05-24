@@ -9,9 +9,6 @@ public final class FairlandsConfig extends MidnightConfig {
     private static final String DEATH = "death";
 
     @Entry(category = DEATH)
-    public static boolean partialKeepInventoryEnabled = true;
-
-    @Entry(category = DEATH)
     public static boolean keepEquippedArmor = true;
 
     @Entry(category = DEATH)

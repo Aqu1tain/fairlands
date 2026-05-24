@@ -10,3 +10,5 @@
 - Added empty maps and filled maps to the default kept items.
 - Added Exploration Reloaded Map Book compatibility for Partial KeepInventory.
 - Added configurable death penalty effect after respawn.
+- Added `fairlands:partial_keep_inventory`, enabled by default.
+- Added death XP drop cap and XP keep percentage gamerules.

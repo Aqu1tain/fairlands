@@ -1,0 +1,46 @@
+package com.akitain.fairlands.rule;
+
+import com.akitain.fairlands.Fairlands;
+import net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.gamerules.GameRule;
+import net.minecraft.world.level.gamerules.GameRuleCategory;
+import net.minecraft.world.level.gamerules.GameRules;
+
+public final class FairlandsGameRules {
+    public static final GameRule<Boolean> PARTIAL_KEEP_INVENTORY = GameRuleBuilder
+            .forBoolean(true)
+            .category(GameRuleCategory.PLAYER)
+            .buildAndRegister(Fairlands.id("partial_keep_inventory"));
+
+    public static final GameRule<Integer> DEATH_XP_DROP_CAP = GameRuleBuilder
+            .forInteger(1000)
+            .range(0, 100000)
+            .category(GameRuleCategory.PLAYER)
+            .buildAndRegister(Fairlands.id("death_xp_drop_cap"));
+
+    public static final GameRule<Integer> DEATH_XP_KEEP_PERCENT = GameRuleBuilder
+            .forInteger(50)
+            .range(0, 100)
+            .category(GameRuleCategory.PLAYER)
+            .buildAndRegister(Fairlands.id("death_xp_keep_percent"));
+
+    private FairlandsGameRules() {
+    }
+
+    public static void register() {
+    }
+
+    public static boolean partialKeepInventoryEnabled(ServerLevel level) {
+        GameRules gameRules = level.getGameRules();
+        return !gameRules.get(GameRules.KEEP_INVENTORY) && gameRules.get(PARTIAL_KEEP_INVENTORY);
+    }
+
+    public static int deathXpDropCap(ServerLevel level) {
+        return Math.max(0, level.getGameRules().get(DEATH_XP_DROP_CAP));
+    }
+
+    public static int deathXpKeepPercent(ServerLevel level) {
+        return Math.clamp(level.getGameRules().get(DEATH_XP_KEEP_PERCENT), 0, 100);
+    }
+}
