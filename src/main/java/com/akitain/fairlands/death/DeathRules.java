@@ -38,9 +38,14 @@ public final class DeathRules {
             restoreKeptItems(newPlayer);
             applyDeathPenalty(newPlayer);
         });
+
+        ServerPlayerEvents.JOIN.register(DeathRules::restoreKeptItems);
+        ServerPlayerEvents.LEAVE.register(DeathRules::restoreKeptItems);
     }
 
     private static void captureKeptItems(ServerPlayer player) {
+        restoreKeptItems(player);
+
         if (!FairlandsConfig.partialKeepInventoryEnabled || shouldRespectVanillaKeepInventory(player)) {
             return;
         }
