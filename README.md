@@ -19,6 +19,7 @@ The first death rules module is implemented. Remaining gameplay systems are trac
 - Death XP drops are capped by `fairlands:death_xp_drop_cap`.
 - A percentage of total XP is restored after respawn with `fairlands:death_xp_keep_percent`.
 - Respawn setup is restricted to a configurable radius around world spawn by default.
+- Creepers do not break blocks by default and their explosion radius is slightly larger.
 
 ## Planned Scope
 
@@ -72,6 +73,8 @@ Fairlands writes its config through MidnightLib. The first configurable options 
 /gamerule fairlands:death_xp_keep_percent 50
 /gamerule fairlands:restrict_respawn_setup true
 /gamerule fairlands:respawn_setup_radius 2000
+/gamerule fairlands:creeper_block_damage false
+/gamerule fairlands:creeper_explosion_radius_bonus 1
 ```
 
 ## Documentation References

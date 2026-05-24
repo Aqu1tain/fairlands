@@ -13,3 +13,4 @@
 - Added `fairlands:partial_keep_inventory`, enabled by default.
 - Added death XP drop cap and XP keep percentage gamerules.
 - Added respawn setup restriction gamerules for beds and respawn anchors.
+- Added creeper block damage and explosion radius gamerules.

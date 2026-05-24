@@ -36,6 +36,17 @@ public final class FairlandsGameRules {
             .category(GameRuleCategory.PLAYER)
             .buildAndRegister(Fairlands.id("respawn_setup_radius"));
 
+    public static final GameRule<Boolean> CREEPER_BLOCK_DAMAGE = GameRuleBuilder
+            .forBoolean(false)
+            .category(GameRuleCategory.MOBS)
+            .buildAndRegister(Fairlands.id("creeper_block_damage"));
+
+    public static final GameRule<Integer> CREEPER_EXPLOSION_RADIUS_BONUS = GameRuleBuilder
+            .forInteger(1)
+            .range(0, 10)
+            .category(GameRuleCategory.MOBS)
+            .buildAndRegister(Fairlands.id("creeper_explosion_radius_bonus"));
+
     private FairlandsGameRules() {
     }
 
@@ -61,5 +72,13 @@ public final class FairlandsGameRules {
 
     public static int respawnSetupRadius(ServerLevel level) {
         return Math.max(0, level.getGameRules().get(RESPAWN_SETUP_RADIUS));
+    }
+
+    public static boolean creeperBlockDamageEnabled(ServerLevel level) {
+        return level.getGameRules().get(CREEPER_BLOCK_DAMAGE);
+    }
+
+    public static int creeperExplosionRadiusBonus(ServerLevel level) {
+        return Math.max(0, level.getGameRules().get(CREEPER_EXPLOSION_RADIUS_BONUS));
     }
 }
