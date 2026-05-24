@@ -63,10 +63,15 @@ public final class FairlandsGameRules {
             .category(GameRuleCategory.PLAYER)
             .buildAndRegister(Fairlands.id("spawn_protection_pvp"));
 
-    public static final GameRule<Boolean> SPAWN_PROTECTION_GRIEF = GameRuleBuilder
+    public static final GameRule<Boolean> SPAWN_PROTECTION_EXPLOSIONS = GameRuleBuilder
             .forBoolean(true)
             .category(GameRuleCategory.PLAYER)
             .buildAndRegister(Fairlands.id("spawn_protection_grief"));
+
+    public static final GameRule<Boolean> SPAWN_PROTECTION_EXPLOSIONS_ALIAS = GameRuleBuilder
+            .forBoolean(true)
+            .category(GameRuleCategory.PLAYER)
+            .buildAndRegister(Fairlands.id("spawn_protection_explosions"));
 
     private FairlandsGameRules() {
     }
@@ -115,7 +120,8 @@ public final class FairlandsGameRules {
         return level.getGameRules().get(SPAWN_PROTECTION_PVP);
     }
 
-    public static boolean spawnProtectionGriefEnabled(ServerLevel level) {
-        return level.getGameRules().get(SPAWN_PROTECTION_GRIEF);
+    public static boolean spawnProtectionExplosionsEnabled(ServerLevel level) {
+        GameRules gameRules = level.getGameRules();
+        return gameRules.get(SPAWN_PROTECTION_EXPLOSIONS) && gameRules.get(SPAWN_PROTECTION_EXPLOSIONS_ALIAS);
     }
 }
