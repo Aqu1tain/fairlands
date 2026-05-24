@@ -1,6 +1,7 @@
 package com.akitain.fairlands;
 
 import com.akitain.fairlands.config.FairlandsConfig;
+import com.akitain.fairlands.feedback.FeedbackCommand;
 import com.akitain.fairlands.death.DeathRules;
 import com.akitain.fairlands.rule.FairlandsGameRules;
 import com.akitain.fairlands.spawn.SpawnProtectionRules;
@@ -17,6 +18,7 @@ public final class Fairlands implements ModInitializer {
         FairlandsGameRules.register();
         DeathRules.register();
         SpawnProtectionRules.register();
+        FeedbackCommand.register();
     }
 
     public static Identifier id(String path) {
