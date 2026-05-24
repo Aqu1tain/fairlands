@@ -2,5 +2,8 @@
     "gamerule.fairlands:death_xp_drop_cap": "Fairlands death XP drop cap",
     "gamerule.fairlands:death_xp_keep_percent": "Fairlands death XP keep percent",
     "gamerule.fairlands:partial_keep_inventory": "Fairlands partial keep inventory",
+    "gamerule.fairlands:restrict_respawn_setup": "Fairlands restrict respawn setup",
+    "gamerule.fairlands:respawn_setup_radius": "Fairlands respawn setup radius",
+    "message.fairlands.respawn_setup_restricted": "Your respawn point must be within %s blocks of world spawn.",
     "tag.item.fairlands.keep_on_death": "Kept on death"
 }

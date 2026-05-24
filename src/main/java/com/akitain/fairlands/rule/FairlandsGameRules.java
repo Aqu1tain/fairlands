@@ -25,6 +25,17 @@ public final class FairlandsGameRules {
             .category(GameRuleCategory.PLAYER)
             .buildAndRegister(Fairlands.id("death_xp_keep_percent"));
 
+    public static final GameRule<Boolean> RESTRICT_RESPAWN_SETUP = GameRuleBuilder
+            .forBoolean(true)
+            .category(GameRuleCategory.PLAYER)
+            .buildAndRegister(Fairlands.id("restrict_respawn_setup"));
+
+    public static final GameRule<Integer> RESPAWN_SETUP_RADIUS = GameRuleBuilder
+            .forInteger(2000)
+            .range(0, 100000)
+            .category(GameRuleCategory.PLAYER)
+            .buildAndRegister(Fairlands.id("respawn_setup_radius"));
+
     private FairlandsGameRules() {
     }
 
@@ -42,5 +53,13 @@ public final class FairlandsGameRules {
 
     public static int deathXpKeepPercent(ServerLevel level) {
         return Math.clamp(level.getGameRules().get(DEATH_XP_KEEP_PERCENT), 0, 100);
+    }
+
+    public static boolean respawnSetupRestrictionEnabled(ServerLevel level) {
+        return level.getGameRules().get(RESTRICT_RESPAWN_SETUP);
+    }
+
+    public static int respawnSetupRadius(ServerLevel level) {
+        return Math.max(0, level.getGameRules().get(RESPAWN_SETUP_RADIUS));
     }
 }

@@ -18,6 +18,7 @@ The first death rules module is implemented. Remaining gameplay systems are trac
 - `fairlands:partial_keep_inventory` enables the death rules by default per world.
 - Death XP drops are capped by `fairlands:death_xp_drop_cap`.
 - A percentage of total XP is restored after respawn with `fairlands:death_xp_keep_percent`.
+- Respawn setup is restricted to a configurable radius around world spawn by default.
 
 ## Planned Scope
 
@@ -69,6 +70,8 @@ Fairlands writes its config through MidnightLib. The first configurable options 
 /gamerule fairlands:partial_keep_inventory true
 /gamerule fairlands:death_xp_drop_cap 1000
 /gamerule fairlands:death_xp_keep_percent 50
+/gamerule fairlands:restrict_respawn_setup true
+/gamerule fairlands:respawn_setup_radius 2000
 ```
 
 ## Documentation References
