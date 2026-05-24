@@ -17,6 +17,7 @@ public abstract class LivingEntityMixin {
             return amount;
         }
 
-        return CombatRules.capEndCrystalPlayerDamage(level, source, amount);
+        float cappedAmount = CombatRules.capEndCrystalPlayerDamage(level, source, amount);
+        return CombatRules.capRespawnAnchorPlayerDamage(level, source, cappedAmount);
     }
 }

@@ -79,6 +79,12 @@ public final class FairlandsGameRules {
             .category(GameRuleCategory.PLAYER)
             .buildAndRegister(Fairlands.id("end_crystal_player_damage_cap"));
 
+    public static final GameRule<Integer> RESPAWN_ANCHOR_PLAYER_DAMAGE_CAP = GameRuleBuilder
+            .forInteger(8)
+            .range(0, 100)
+            .category(GameRuleCategory.PLAYER)
+            .buildAndRegister(Fairlands.id("respawn_anchor_player_damage_cap"));
+
     private FairlandsGameRules() {
     }
 
@@ -133,5 +139,9 @@ public final class FairlandsGameRules {
 
     public static int endCrystalPlayerDamageCap(ServerLevel level) {
         return Math.max(0, level.getGameRules().get(END_CRYSTAL_PLAYER_DAMAGE_CAP));
+    }
+
+    public static int respawnAnchorPlayerDamageCap(ServerLevel level) {
+        return Math.max(0, level.getGameRules().get(RESPAWN_ANCHOR_PLAYER_DAMAGE_CAP));
     }
 }

@@ -3,6 +3,7 @@ package com.akitain.fairlands.combat;
 import com.akitain.fairlands.rule.FairlandsGameRules;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.boss.enderdragon.EndCrystal;
 
 public final class CombatRules {
@@ -15,6 +16,14 @@ public final class CombatRules {
         }
 
         return Math.min(amount, FairlandsGameRules.endCrystalPlayerDamageCap(level));
+    }
+
+    public static float capRespawnAnchorPlayerDamage(ServerLevel level, DamageSource source, float amount) {
+        if (!source.is(DamageTypes.BAD_RESPAWN_POINT)) {
+            return amount;
+        }
+
+        return Math.min(amount, FairlandsGameRules.respawnAnchorPlayerDamageCap(level));
     }
 
     private static boolean isEndCrystalDamage(DamageSource source) {
