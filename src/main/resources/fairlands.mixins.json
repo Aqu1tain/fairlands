@@ -4,6 +4,7 @@
     "compatibilityLevel": "JAVA_25",
     "mixins": [
         "CreeperMixin",
+        "LivingEntityMixin",
         "PlayerMixin",
         "ServerLevelMixin",
         "ServerPlayerMixin",

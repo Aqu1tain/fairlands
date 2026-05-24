@@ -73,6 +73,12 @@ public final class FairlandsGameRules {
             .category(GameRuleCategory.PLAYER)
             .buildAndRegister(Fairlands.id("spawn_protection_explosions"));
 
+    public static final GameRule<Integer> END_CRYSTAL_PLAYER_DAMAGE_CAP = GameRuleBuilder
+            .forInteger(8)
+            .range(0, 100)
+            .category(GameRuleCategory.PLAYER)
+            .buildAndRegister(Fairlands.id("end_crystal_player_damage_cap"));
+
     private FairlandsGameRules() {
     }
 
@@ -123,5 +129,9 @@ public final class FairlandsGameRules {
     public static boolean spawnProtectionExplosionsEnabled(ServerLevel level) {
         GameRules gameRules = level.getGameRules();
         return gameRules.get(SPAWN_PROTECTION_EXPLOSIONS) && gameRules.get(SPAWN_PROTECTION_EXPLOSIONS_ALIAS);
+    }
+
+    public static int endCrystalPlayerDamageCap(ServerLevel level) {
+        return Math.max(0, level.getGameRules().get(END_CRYSTAL_PLAYER_DAMAGE_CAP));
     }
 }

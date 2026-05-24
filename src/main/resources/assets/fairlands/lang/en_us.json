@@ -3,6 +3,7 @@
     "gamerule.fairlands:creeper_explosion_radius_bonus": "Fairlands creeper explosion radius bonus",
     "gamerule.fairlands:death_xp_drop_cap": "Fairlands death XP drop cap",
     "gamerule.fairlands:death_xp_keep_percent": "Fairlands death XP keep percent",
+    "gamerule.fairlands:end_crystal_player_damage_cap": "Fairlands End crystal player damage cap",
     "gamerule.fairlands:partial_keep_inventory": "Fairlands partial keep inventory",
     "gamerule.fairlands:restrict_respawn_setup": "Fairlands restrict respawn setup",
     "gamerule.fairlands:respawn_setup_radius": "Fairlands respawn setup radius",
