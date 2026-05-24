@@ -5,6 +5,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.boss.enderdragon.EndCrystal;
+import net.minecraft.world.entity.vehicle.minecart.MinecartTNT;
 
 public final class CombatRules {
     private CombatRules() {
@@ -26,7 +27,19 @@ public final class CombatRules {
         return Math.min(amount, FairlandsGameRules.respawnAnchorPlayerDamageCap(level));
     }
 
+    public static float capTntMinecartPlayerDamage(ServerLevel level, DamageSource source, float amount) {
+        if (!isTntMinecartDamage(source)) {
+            return amount;
+        }
+
+        return Math.min(amount, FairlandsGameRules.tntMinecartPlayerDamageCap(level));
+    }
+
     private static boolean isEndCrystalDamage(DamageSource source) {
         return source.getDirectEntity() instanceof EndCrystal || source.getEntity() instanceof EndCrystal;
+    }
+
+    private static boolean isTntMinecartDamage(DamageSource source) {
+        return source.getDirectEntity() instanceof MinecartTNT || source.getEntity() instanceof MinecartTNT;
     }
 }

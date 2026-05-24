@@ -85,6 +85,12 @@ public final class FairlandsGameRules {
             .category(GameRuleCategory.PLAYER)
             .buildAndRegister(Fairlands.id("respawn_anchor_player_damage_cap"));
 
+    public static final GameRule<Integer> TNT_MINECART_PLAYER_DAMAGE_CAP = GameRuleBuilder
+            .forInteger(8)
+            .range(0, 100)
+            .category(GameRuleCategory.PLAYER)
+            .buildAndRegister(Fairlands.id("tnt_minecart_player_damage_cap"));
+
     private FairlandsGameRules() {
     }
 
@@ -143,5 +149,9 @@ public final class FairlandsGameRules {
 
     public static int respawnAnchorPlayerDamageCap(ServerLevel level) {
         return Math.max(0, level.getGameRules().get(RESPAWN_ANCHOR_PLAYER_DAMAGE_CAP));
+    }
+
+    public static int tntMinecartPlayerDamageCap(ServerLevel level) {
+        return Math.max(0, level.getGameRules().get(TNT_MINECART_PLAYER_DAMAGE_CAP));
     }
 }
