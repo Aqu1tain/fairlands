@@ -4,7 +4,7 @@ Fairlands is a server-focused Fabric mod for Minecraft 26.1.x. It is intended to
 
 ## Status
 
-This repository is initialized for Minecraft 26.1.2, Fabric Loader 0.19.2, Fabric API 0.148.0+26.1.2, Loom 1.16.1, Mojang mappings, and Java 25.
+This repository is initialized for Minecraft 26.1.2, Fabric Loader 0.19.2, Fabric API 0.149.1+26.1.2, Loom 1.16.1, Mojang mappings, and Java 25.
 
 The mod currently contains the project skeleton only. Gameplay systems are tracked in the roadmap below and should be implemented as small, configurable server-side modules.
 
@@ -38,6 +38,8 @@ Use JDK 25 for Minecraft 26.1.x development.
 ./gradlew build
 ./gradlew runServer
 ```
+
+Fairlands bundles MidnightLib for server config.
 
 ## Documentation References
 
