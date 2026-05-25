@@ -126,7 +126,7 @@ public final class FairlandsGameRules {
             .buildAndRegister(Fairlands.id("ore_progression_normal_radius"));
 
     public static final GameRule<Integer> ORE_PROGRESSION_INNER_VEIN_PERCENT = GameRuleBuilder
-            .forInteger(60)
+            .forInteger(45)
             .range(0, 100)
             .category(GameRuleCategory.UPDATES)
             .buildAndRegister(Fairlands.id("ore_progression_inner_vein_percent"));

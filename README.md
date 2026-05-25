@@ -110,7 +110,7 @@ Fairlands writes its config through MidnightLib. Current config options cover de
 /gamerule fairlands:world_progression true
 /gamerule fairlands:ore_progression_inner_radius 2000
 /gamerule fairlands:ore_progression_normal_radius 6000
-/gamerule fairlands:ore_progression_inner_vein_percent 60
+/gamerule fairlands:ore_progression_inner_vein_percent 45
 /gamerule fairlands:ore_progression_far_bonus_percent 10
 ```
 
