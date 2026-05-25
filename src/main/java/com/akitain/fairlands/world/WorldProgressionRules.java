@@ -42,7 +42,7 @@ public final class WorldProgressionRules {
                 && isOreConfig(config);
     }
 
-    private static int oreVeinPercent(ServerLevel level, BlockPos origin) {
+    public static int oreVeinPercent(ServerLevel level, BlockPos origin) {
         int innerRadius = FairlandsGameRules.oreProgressionInnerRadius(level);
         int normalRadius = FairlandsGameRules.oreProgressionNormalRadius(level);
         int innerPercent = FairlandsGameRules.oreProgressionInnerVeinPercent(level);
@@ -58,6 +58,28 @@ public final class WorldProgressionRules {
 
         double progress = (distance - innerRadius) / (normalRadius - innerRadius);
         return (int) Math.round(innerPercent + (100 - innerPercent) * progress);
+    }
+
+    public static int oreBonusPercent(ServerLevel level, BlockPos origin) {
+        if (!FairlandsGameRules.worldProgressionEnabled(level) || !isBeyondNormalRadius(level, origin)) {
+            return 0;
+        }
+
+        return FairlandsGameRules.oreProgressionFarBonusPercent(level);
+    }
+
+    public static int expectedOreAttemptPercent(ServerLevel level, BlockPos origin) {
+        int veinPercent = oreVeinPercent(level, origin);
+        int bonusPercent = oreBonusPercent(level, origin);
+        return Math.round(veinPercent * (100 + bonusPercent) / 100.0F);
+    }
+
+    public static double distanceFromSpawn(ServerLevel level, BlockPos origin) {
+        return Math.sqrt(horizontalDistanceSquared(level, origin));
+    }
+
+    public static BlockPos worldSpawn(ServerLevel level) {
+        return level.getServer().overworld().getRespawnData().pos();
     }
 
     private static boolean isBeyondNormalRadius(ServerLevel level, BlockPos origin) {
@@ -77,7 +99,7 @@ public final class WorldProgressionRules {
     }
 
     private static long horizontalDistanceSquared(ServerLevel level, BlockPos target) {
-        BlockPos spawn = level.getServer().overworld().getRespawnData().pos();
+        BlockPos spawn = worldSpawn(level);
         long xOffset = (long) target.getX() - spawn.getX();
         long zOffset = (long) target.getZ() - spawn.getZ();
         return xOffset * xOffset + zOffset * zOffset;
