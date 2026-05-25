@@ -22,7 +22,8 @@ jobs:
       - name: Validate Gradle wrapper
         uses: gradle/actions/wrapper-validation@v5
 
-      - name: Build
+      - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v5
-        with:
-          arguments: build
+
+      - name: Build
+        run: ./gradlew build
