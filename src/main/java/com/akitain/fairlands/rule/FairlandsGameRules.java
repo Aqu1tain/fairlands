@@ -137,6 +137,29 @@ public final class FairlandsGameRules {
             .category(GameRuleCategory.UPDATES)
             .buildAndRegister(Fairlands.id("ore_progression_far_bonus_percent"));
 
+    public static final GameRule<Boolean> PVP_COMBAT_LOGGING = GameRuleBuilder
+            .forBoolean(true)
+            .category(GameRuleCategory.PLAYER)
+            .buildAndRegister(Fairlands.id("pvp_combat_logging"));
+
+    public static final GameRule<Integer> PVP_COMBAT_TAG_SECONDS = GameRuleBuilder
+            .forInteger(15)
+            .range(1, 300)
+            .category(GameRuleCategory.PLAYER)
+            .buildAndRegister(Fairlands.id("pvp_combat_tag_seconds"));
+
+    public static final GameRule<Integer> PVP_COMBAT_LOG_PENALTY_SECONDS = GameRuleBuilder
+            .forInteger(600)
+            .range(1, 3600)
+            .category(GameRuleCategory.PLAYER)
+            .buildAndRegister(Fairlands.id("pvp_combat_log_penalty_seconds"));
+
+    public static final GameRule<Integer> PVP_COMBAT_LOG_HEALTH_PERCENT = GameRuleBuilder
+            .forInteger(50)
+            .range(1, 100)
+            .category(GameRuleCategory.PLAYER)
+            .buildAndRegister(Fairlands.id("pvp_combat_log_health_percent"));
+
     private FairlandsGameRules() {
     }
 
@@ -231,5 +254,21 @@ public final class FairlandsGameRules {
 
     public static int oreProgressionFarBonusPercent(ServerLevel level) {
         return Math.clamp(level.getGameRules().get(ORE_PROGRESSION_FAR_BONUS_PERCENT), 0, 100);
+    }
+
+    public static boolean pvpCombatLoggingEnabled(ServerLevel level) {
+        return level.getGameRules().get(PVP_COMBAT_LOGGING);
+    }
+
+    public static int pvpCombatTagSeconds(ServerLevel level) {
+        return Math.max(1, level.getGameRules().get(PVP_COMBAT_TAG_SECONDS));
+    }
+
+    public static int pvpCombatLogPenaltySeconds(ServerLevel level) {
+        return Math.max(1, level.getGameRules().get(PVP_COMBAT_LOG_PENALTY_SECONDS));
+    }
+
+    public static int pvpCombatLogHealthPercent(ServerLevel level) {
+        return Math.clamp(level.getGameRules().get(PVP_COMBAT_LOG_HEALTH_PERCENT), 1, 100);
     }
 }

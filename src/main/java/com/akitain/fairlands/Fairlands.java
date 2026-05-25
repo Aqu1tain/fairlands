@@ -1,6 +1,7 @@
 package com.akitain.fairlands;
 
 import com.akitain.fairlands.config.FairlandsConfig;
+import com.akitain.fairlands.combat.CombatLoggingRules;
 import com.akitain.fairlands.feedback.FeedbackCommand;
 import com.akitain.fairlands.death.DeathRules;
 import com.akitain.fairlands.rule.FairlandsGameRules;
@@ -19,6 +20,7 @@ public final class Fairlands implements ModInitializer {
         MidnightConfig.init(MOD_ID, FairlandsConfig.class);
         FairlandsGameRules.register();
         DeathRules.register();
+        CombatLoggingRules.register();
         SpawnProtectionRules.register();
         TabVisibilityRules.register();
         FeedbackCommand.register();

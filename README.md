@@ -42,6 +42,8 @@ Core server rules are implemented and ready for local multiplayer testing. World
 
 - Players can send server feedback with `/feedback <message>`.
 - Invisible players are hidden from other players' tab list by default.
+- Players enter a timed PVP combat state after damaging or being damaged by another player.
+- Disconnecting during PVP combat halves max health temporarily on reconnect.
 
 ## Planned Scope
 
@@ -112,6 +114,10 @@ Fairlands writes its config through MidnightLib. Current config options cover de
 /gamerule fairlands:ore_progression_normal_radius 6000
 /gamerule fairlands:ore_progression_inner_vein_percent 45
 /gamerule fairlands:ore_progression_far_bonus_percent 10
+/gamerule fairlands:pvp_combat_logging true
+/gamerule fairlands:pvp_combat_tag_seconds 15
+/gamerule fairlands:pvp_combat_log_penalty_seconds 600
+/gamerule fairlands:pvp_combat_log_health_percent 50
 ```
 
 `fairlands:spawn_protection_grief` is kept for existing worlds and currently mirrors the explosion protection setting.
@@ -127,6 +133,7 @@ Fairlands writes its config through MidnightLib. Current config options cover de
 - Invisibility: with two players online, apply invisibility to one player and confirm they disappear from the other player's tab list.
 - Ore progression: generate new chunks near spawn and far from spawn, then compare ore density. Near-spawn chunks should have fewer ore veins; chunks beyond `fairlands:ore_progression_normal_radius` should be vanilla density with a small bonus chance.
 - Ore progression debug: run `/fairlands_debug world_progression count here <chunkRadius>`, `/fairlands_debug world_progression count at <x> <z> <chunkRadius>`, or `/fairlands_debug world_progression count samples <chunkRadius>` as an operator to count real generated ore blocks.
+- Combat logging: hit another player and confirm both players get a bossbar timer. Disconnect during the timer, reconnect, and confirm max health is halved temporarily with a chat message.
 
 ## Documentation References
 

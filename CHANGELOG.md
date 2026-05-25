@@ -19,3 +19,4 @@
 - Added `/feedback <message>` logging to `run/fairlands-feedback.log`.
 - Added tab-list hiding for invisible players.
 - Added Overworld ore density progression by distance from world spawn.
+- Added PVP combat logging punishment with a bossbar timer and temporary max-health penalty.
