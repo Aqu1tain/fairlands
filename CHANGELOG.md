@@ -18,3 +18,4 @@
 - Added player damage caps for End crystals, respawn anchors, TNT minecarts, mace smash attacks, and spears.
 - Added `/feedback <message>` logging to `run/fairlands-feedback.log`.
 - Added tab-list hiding for invisible players.
+- Added Overworld ore density progression by distance from world spawn.

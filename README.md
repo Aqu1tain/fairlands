@@ -107,6 +107,11 @@ Fairlands writes its config through MidnightLib. Current config options cover de
 /gamerule fairlands:mace_smash_player_damage_cap 16
 /gamerule fairlands:spear_player_damage_cap 14
 /gamerule fairlands:hide_invisible_players_from_tab true
+/gamerule fairlands:world_progression true
+/gamerule fairlands:ore_progression_inner_radius 2000
+/gamerule fairlands:ore_progression_normal_radius 6000
+/gamerule fairlands:ore_progression_inner_vein_percent 60
+/gamerule fairlands:ore_progression_far_bonus_percent 10
 ```
 
 `fairlands:spawn_protection_grief` is kept for existing worlds and currently mirrors the explosion protection setting.
@@ -120,6 +125,7 @@ Fairlands writes its config through MidnightLib. Current config options cover de
 - Combat caps: test end crystals, respawn anchors, TNT minecarts, mace smash attacks, and spears against players.
 - Feedback: run `/feedback <message>` and confirm `run/fairlands-feedback.log` records the entry.
 - Invisibility: with two players online, apply invisibility to one player and confirm they disappear from the other player's tab list.
+- Ore progression: generate new chunks near spawn and far from spawn, then compare ore density. Near-spawn chunks should have fewer ore veins; chunks beyond `fairlands:ore_progression_normal_radius` should be vanilla density with a small bonus chance.
 
 ## Documentation References
 

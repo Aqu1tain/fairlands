@@ -108,6 +108,35 @@ public final class FairlandsGameRules {
             .category(GameRuleCategory.PLAYER)
             .buildAndRegister(Fairlands.id("hide_invisible_players_from_tab"));
 
+    public static final GameRule<Boolean> WORLD_PROGRESSION = GameRuleBuilder
+            .forBoolean(true)
+            .category(GameRuleCategory.UPDATES)
+            .buildAndRegister(Fairlands.id("world_progression"));
+
+    public static final GameRule<Integer> ORE_PROGRESSION_INNER_RADIUS = GameRuleBuilder
+            .forInteger(2000)
+            .range(0, 100000)
+            .category(GameRuleCategory.UPDATES)
+            .buildAndRegister(Fairlands.id("ore_progression_inner_radius"));
+
+    public static final GameRule<Integer> ORE_PROGRESSION_NORMAL_RADIUS = GameRuleBuilder
+            .forInteger(6000)
+            .range(0, 100000)
+            .category(GameRuleCategory.UPDATES)
+            .buildAndRegister(Fairlands.id("ore_progression_normal_radius"));
+
+    public static final GameRule<Integer> ORE_PROGRESSION_INNER_VEIN_PERCENT = GameRuleBuilder
+            .forInteger(60)
+            .range(0, 100)
+            .category(GameRuleCategory.UPDATES)
+            .buildAndRegister(Fairlands.id("ore_progression_inner_vein_percent"));
+
+    public static final GameRule<Integer> ORE_PROGRESSION_FAR_BONUS_PERCENT = GameRuleBuilder
+            .forInteger(10)
+            .range(0, 100)
+            .category(GameRuleCategory.UPDATES)
+            .buildAndRegister(Fairlands.id("ore_progression_far_bonus_percent"));
+
     private FairlandsGameRules() {
     }
 
@@ -182,5 +211,25 @@ public final class FairlandsGameRules {
 
     public static boolean hideInvisiblePlayersFromTabEnabled(ServerLevel level) {
         return level.getGameRules().get(HIDE_INVISIBLE_PLAYERS_FROM_TAB);
+    }
+
+    public static boolean worldProgressionEnabled(ServerLevel level) {
+        return level.getGameRules().get(WORLD_PROGRESSION);
+    }
+
+    public static int oreProgressionInnerRadius(ServerLevel level) {
+        return Math.max(0, level.getGameRules().get(ORE_PROGRESSION_INNER_RADIUS));
+    }
+
+    public static int oreProgressionNormalRadius(ServerLevel level) {
+        return Math.max(0, level.getGameRules().get(ORE_PROGRESSION_NORMAL_RADIUS));
+    }
+
+    public static int oreProgressionInnerVeinPercent(ServerLevel level) {
+        return Math.clamp(level.getGameRules().get(ORE_PROGRESSION_INNER_VEIN_PERCENT), 0, 100);
+    }
+
+    public static int oreProgressionFarBonusPercent(ServerLevel level) {
+        return Math.clamp(level.getGameRules().get(ORE_PROGRESSION_FAR_BONUS_PERCENT), 0, 100);
     }
 }

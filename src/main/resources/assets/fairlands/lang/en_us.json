@@ -7,6 +7,10 @@
     "gamerule.fairlands:hide_invisible_players_from_tab": "Fairlands hide invisible players from tab",
     "gamerule.fairlands:mace_smash_player_damage_cap": "Fairlands mace smash player damage cap",
     "gamerule.fairlands:partial_keep_inventory": "Fairlands partial keep inventory",
+    "gamerule.fairlands:ore_progression_far_bonus_percent": "Fairlands far ore bonus percent",
+    "gamerule.fairlands:ore_progression_inner_radius": "Fairlands inner ore progression radius",
+    "gamerule.fairlands:ore_progression_inner_vein_percent": "Fairlands inner ore vein percent",
+    "gamerule.fairlands:ore_progression_normal_radius": "Fairlands normal ore progression radius",
     "gamerule.fairlands:restrict_respawn_setup": "Fairlands restrict respawn setup",
     "gamerule.fairlands:respawn_anchor_player_damage_cap": "Fairlands respawn anchor player damage cap",
     "gamerule.fairlands:respawn_setup_radius": "Fairlands respawn setup radius",
@@ -17,6 +21,7 @@
     "gamerule.fairlands:spawn_protection_radius": "Fairlands spawn protection radius",
     "gamerule.fairlands:spear_player_damage_cap": "Fairlands spear player damage cap",
     "gamerule.fairlands:tnt_minecart_player_damage_cap": "Fairlands TNT minecart player damage cap",
+    "gamerule.fairlands:world_progression": "Fairlands world progression",
     "message.fairlands.respawn_setup_restricted": "Your respawn point must be within %s blocks of world spawn.",
     "tag.item.fairlands.keep_on_death": "Kept on death"
 }

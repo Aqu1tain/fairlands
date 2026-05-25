@@ -34,18 +34,26 @@ Do not add it as a dependency for now. It is too narrow and too invasive for Fai
 
 Do not add a new dependency yet.
 
-Implement world progression in small server-side pieces using Fabric API and direct server checks:
+Implement world progression in small server-side pieces using Fabric API, Mixin hooks, and direct server checks:
 
 1. Distance bands from world spawn.
-2. Rare-biome classification using biome keys and tags.
-3. Resource/loot bonuses that require both distance and biome context.
-4. Gamerules/config for tuning.
+2. Ore density scaling by distance from world spawn.
+3. Rare-biome classification using biome keys and tags.
+4. Resource/loot bonuses that require both distance and biome context.
+5. Gamerules/config for tuning.
 
 True radial biome redistribution should remain a separate experimental module or branch. It should not block the first playable progression system.
 
 ## First Implementation Target
 
-The first useful feature should be distant rare-biome rewards:
+The first useful feature is ore density progression:
+
+- New Overworld chunks close to spawn generate fewer ore veins.
+- Ore density interpolates back to vanilla farther from spawn.
+- New Overworld chunks beyond the normal radius can receive a small bonus ore vein chance.
+- Existing generated chunks are not rewritten.
+
+The next progression feature should be distant rare-biome rewards:
 
 - Define distance bands, defaulting to near, frontier, and far.
 - Detect when a player breaks ore blocks or opens generated loot far from spawn.
