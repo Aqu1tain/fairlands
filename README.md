@@ -6,7 +6,7 @@ Fairlands is a server-focused Fabric mod for Minecraft 26.1.x. It is intended to
 
 This repository is initialized for Minecraft 26.1.2, Fabric Loader 0.19.2, Fabric API 0.149.1+26.1.2, Loom 1.16.1, Mojang mappings, and Java 25.
 
-Core server rules are implemented and ready for local multiplayer testing. World progression is the main remaining gameplay module.
+Core server rules and the first world progression pass are implemented and ready for local multiplayer testing.
 
 ## Implemented
 
@@ -43,11 +43,18 @@ Core server rules are implemented and ready for local multiplayer testing. World
 - Players can send server feedback with `/feedback <message>`.
 - Invisible players are hidden from other players' tab list by default.
 - Players enter a timed PVP combat state after damaging or being damaged by another player.
-- Disconnecting during PVP combat halves max health temporarily on reconnect.
+- Disconnecting during PVP combat halves max health for 10 minutes on reconnect by default.
+
+### World Progression
+
+- New Overworld chunks near spawn generate fewer ore veins by default.
+- Ore density scales back toward vanilla levels with distance from world spawn.
+- Distant chunks beyond the normal radius can receive a small bonus ore vein chance.
+- Operator debug commands can count real generated ore blocks for testing.
 
 ## Planned Scope
 
-- World progression: place rare biomes farther from spawn and make distant regions more rewarding.
+- World progression: add rare-biome rewards and consider biome placement experiments after ore progression is playtested.
 - Balance pass after playtesting: tune default damage caps, spawn radius, death penalty, and XP retention.
 
 The world progression design notes are tracked in `docs/world-progression.md`.
@@ -133,7 +140,7 @@ Fairlands writes its config through MidnightLib. Current config options cover de
 - Invisibility: with two players online, apply invisibility to one player and confirm they disappear from the other player's tab list.
 - Ore progression: generate new chunks near spawn and far from spawn, then compare ore density. Near-spawn chunks should have fewer ore veins; chunks beyond `fairlands:ore_progression_normal_radius` should be vanilla density with a small bonus chance.
 - Ore progression debug: run `/fairlands_debug world_progression count here <chunkRadius>`, `/fairlands_debug world_progression count at <x> <z> <chunkRadius>`, or `/fairlands_debug world_progression count samples <chunkRadius>` as an operator to count real generated ore blocks.
-- Combat logging: hit another player and confirm both players get a bossbar timer. Disconnect during the timer, reconnect, and confirm max health is halved temporarily with a chat message.
+- Combat logging: hit another player and confirm both players get a bossbar timer. Disconnect during the timer, reconnect, and confirm max health is halved for 10 minutes with a chat message.
 
 ## Documentation References
 

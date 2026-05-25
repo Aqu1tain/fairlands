@@ -44,14 +44,20 @@ Implement world progression in small server-side pieces using Fabric API, Mixin 
 
 True radial biome redistribution should remain a separate experimental module or branch. It should not block the first playable progression system.
 
-## First Implementation Target
+## Current Implementation
 
-The first useful feature is ore density progression:
+The first useful feature is implemented as ore density progression:
 
 - New Overworld chunks close to spawn generate fewer ore veins.
 - Ore density interpolates back to vanilla farther from spawn.
 - New Overworld chunks beyond the normal radius can receive a small bonus ore vein chance.
 - Existing generated chunks are not rewritten.
+- Operator debug commands count actual ore blocks in generated chunks:
+  - `/fairlands_debug world_progression count here <chunkRadius>`
+  - `/fairlands_debug world_progression count at <x> <z> <chunkRadius>`
+  - `/fairlands_debug world_progression count samples <chunkRadius>`
+
+## Next Progression Target
 
 The next progression feature should be distant rare-biome rewards:
 
