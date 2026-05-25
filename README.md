@@ -48,6 +48,8 @@ Core server rules are implemented and ready for local multiplayer testing. World
 - World progression: place rare biomes farther from spawn and make distant regions more rewarding.
 - Balance pass after playtesting: tune default damage caps, spawn radius, death penalty, and XP retention.
 
+The world progression design notes are tracked in `docs/world-progression.md`.
+
 ## Side
 
 Fairlands is designed as a server-side gameplay mod:
