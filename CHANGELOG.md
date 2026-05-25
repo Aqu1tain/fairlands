@@ -14,3 +14,7 @@
 - Added death XP drop cap and XP keep percentage gamerules.
 - Added respawn setup restriction gamerules for beds and respawn anchors.
 - Added creeper block damage and explosion radius gamerules.
+- Added spawn safe zone rules for PVP, destructive explosions, and wither spawning.
+- Added player damage caps for End crystals, respawn anchors, TNT minecarts, mace smash attacks, and spears.
+- Added `/feedback <message>` logging to `run/fairlands-feedback.log`.
+- Added tab-list hiding for invisible players.
