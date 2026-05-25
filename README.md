@@ -126,7 +126,7 @@ Fairlands writes its config through MidnightLib. Current config options cover de
 - Feedback: run `/feedback <message>` and confirm `run/fairlands-feedback.log` records the entry.
 - Invisibility: with two players online, apply invisibility to one player and confirm they disappear from the other player's tab list.
 - Ore progression: generate new chunks near spawn and far from spawn, then compare ore density. Near-spawn chunks should have fewer ore veins; chunks beyond `fairlands:ore_progression_normal_radius` should be vanilla density with a small bonus chance.
-- Ore progression debug: run `/fairlands_debug world_progression here`, `/fairlands_debug world_progression at <x> <z>`, or `/fairlands_debug world_progression samples` as an operator to verify the current distance curve.
+- Ore progression debug: run `/fairlands_debug world_progression count here <chunkRadius>`, `/fairlands_debug world_progression count at <x> <z> <chunkRadius>`, or `/fairlands_debug world_progression count samples <chunkRadius>` as an operator to count real generated ore blocks.
 
 ## Documentation References
 
