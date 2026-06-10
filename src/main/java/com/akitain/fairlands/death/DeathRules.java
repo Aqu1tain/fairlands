@@ -105,6 +105,7 @@ public final class DeathRules {
                 || stack.getItem() == Items.FLINT_AND_STEEL
                 || stack.getItem() == Items.FISHING_ROD
                 || stack.getItem() == Items.BRUSH
+                || stack.getItem() == Items.WATER_BUCKET
                 || stack.getItem() == Items.CARROT_ON_A_STICK
                 || stack.getItem() == Items.WARPED_FUNGUS_ON_A_STICK;
     }

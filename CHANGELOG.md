@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.1-beta
+
+- Water buckets are now treated as tools and kept on death.
+
 ## 0.1.0-beta
 
 - Initialized Fairlands for Minecraft 26.1.2.
