@@ -10,7 +10,16 @@ public final class SpawnSetupRules {
     private SpawnSetupRules() {
     }
 
-    public static boolean canSetRespawnPosition(ServerPlayer player, ServerPlayer.RespawnConfig respawnConfig) {
+    public static void trySetRespawnPosition(ServerPlayer player, ServerPlayer.RespawnConfig respawnConfig, boolean showMessage) {
+        if (canSetRespawnPosition(player, respawnConfig)) {
+            player.setRespawnPosition(respawnConfig, showMessage);
+            return;
+        }
+
+        sendBlockedRespawnMessage(player);
+    }
+
+    private static boolean canSetRespawnPosition(ServerPlayer player, ServerPlayer.RespawnConfig respawnConfig) {
         if (respawnConfig == null) {
             return true;
         }
@@ -23,7 +32,7 @@ public final class SpawnSetupRules {
         return isWithinAllowedRadius(level, respawnConfig.respawnData());
     }
 
-    public static void sendBlockedRespawnMessage(ServerPlayer player) {
+    private static void sendBlockedRespawnMessage(ServerPlayer player) {
         int radius = FairlandsGameRules.respawnSetupRadius(player.level());
         player.sendSystemMessage(Component.literal("Respawn point unchanged: it must be within " + radius + " blocks of world spawn."));
     }
