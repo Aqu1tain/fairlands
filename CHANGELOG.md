@@ -4,6 +4,7 @@
 
 - Water buckets are now treated as tools and kept on death.
 - Fixed totems of undying voiding kept inventory items.
+- Fixed the death penalty effect applying when returning from the End.
 
 ## 0.1.0-beta
 

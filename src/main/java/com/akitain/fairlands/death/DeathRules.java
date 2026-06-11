@@ -42,7 +42,9 @@ public final class DeathRules {
 
         ServerPlayerEvents.AFTER_RESPAWN.register((oldPlayer, newPlayer, alive) -> {
             restoreKeptItems(newPlayer);
-            applyDeathPenalty(newPlayer);
+            if (!alive) {
+                applyDeathPenalty(newPlayer);
+            }
         });
 
         ServerPlayerEvents.JOIN.register(DeathRules::restoreKeptItems);
