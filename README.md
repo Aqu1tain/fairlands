@@ -38,7 +38,7 @@ Optional compatibility:
 - Disabled automatically when vanilla `keepInventory` is enabled.
 - Keeps equipped armor when `keepEquippedArmor` is enabled.
 - Keeps tools and weapons when `keepToolsAndWeapons` is enabled.
-- Keeps empty maps, filled maps, and items tagged `fairlands:keep_on_death`.
+- Keeps empty maps, filled maps, recovery compasses, and items tagged `fairlands:keep_on_death`.
 - Keeps configured allowlist items from MidnightLib config.
 - Drops normal inventory items as usual.
 - Restores kept items after respawn, preserving original slots when possible.

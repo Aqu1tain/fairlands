@@ -3,6 +3,7 @@
     "values": [
         "minecraft:map",
         "minecraft:filled_map",
+        "minecraft:recovery_compass",
         {
             "id": "exploration-reloaded:map_book",
             "required": false

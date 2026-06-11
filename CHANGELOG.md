@@ -6,6 +6,7 @@
 - Fixed totems of undying voiding kept inventory items.
 - Fixed the death penalty effect applying when returning from the End.
 - Respawn setup restriction now only applies when beds and respawn anchors set a spawn point, no longer to `/spawnpoint` or internal respawn restores.
+- Added recovery compasses to the default kept items.
 
 ## 0.1.0-beta
 
