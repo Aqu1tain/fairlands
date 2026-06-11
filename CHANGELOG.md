@@ -1,13 +1,17 @@
 # Changelog
 
-## 0.1.1-beta
+## 0.1.2-beta
 
-- All buckets (`c:buckets`) are now treated as tools and kept on death.
 - Fixed totems of undying voiding kept inventory items.
 - Fixed the death penalty effect applying when returning from the End.
 - Respawn setup restriction now only applies when beds and respawn anchors set a spawn point, no longer to `/spawnpoint` or internal respawn restores.
 - Added recovery compasses to the default kept items.
 - Added a smelting recipe turning rotten flesh into leather.
+- All buckets (`c:buckets`) are now kept on death, not only water buckets.
+
+## 0.1.1-beta
+
+- Water buckets are now treated as tools and kept on death.
 
 ## 0.1.0-beta
 
