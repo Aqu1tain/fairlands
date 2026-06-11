@@ -111,6 +111,10 @@ These caps only apply when the damaged entity is a player.
 - Console command sources cannot submit feedback.
 - Players receive a success or failure message in chat.
 
+### Recipes
+
+- Rotten flesh can be smelted into leather.
+
 ### Invisibility Tab Hiding
 
 - Enabled by default with `fairlands:hide_invisible_players_from_tab`.
