@@ -44,7 +44,7 @@ Optional compatibility:
 - Restores kept items after respawn, preserving original slots when possible.
 - Drops kept items safely if the original slot and inventory are full.
 
-Default kept tool/weapon groups include swords, axes, pickaxes, shovels, hoes, spears, bows, crossbows, tridents, maces, shields, shears, flint and steel, fishing rods, brushes, water buckets, carrot-on-a-stick, and warped-fungus-on-a-stick.
+Default kept tool/weapon groups include swords, axes, pickaxes, shovels, hoes, spears, bows, crossbows, tridents, maces, shields, shears, flint and steel, fishing rods, brushes, buckets, carrot-on-a-stick, and warped-fungus-on-a-stick.
 
 ### Death Penalty And XP
 

@@ -3,6 +3,7 @@ package com.akitain.fairlands.death;
 import com.akitain.fairlands.config.FairlandsConfig;
 import com.akitain.fairlands.rule.FairlandsGameRules;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -127,7 +128,7 @@ public final class DeathRules {
                 || stack.getItem() == Items.FLINT_AND_STEEL
                 || stack.getItem() == Items.FISHING_ROD
                 || stack.getItem() == Items.BRUSH
-                || stack.getItem() == Items.WATER_BUCKET
+                || stack.is(ConventionalItemTags.BUCKETS)
                 || stack.getItem() == Items.CARROT_ON_A_STICK
                 || stack.getItem() == Items.WARPED_FUNGUS_ON_A_STICK;
     }

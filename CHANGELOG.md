@@ -2,7 +2,7 @@
 
 ## 0.1.1-beta
 
-- Water buckets are now treated as tools and kept on death.
+- All buckets (`c:buckets`) are now treated as tools and kept on death.
 - Fixed totems of undying voiding kept inventory items.
 - Fixed the death penalty effect applying when returning from the End.
 - Respawn setup restriction now only applies when beds and respawn anchors set a spawn point, no longer to `/spawnpoint` or internal respawn restores.
