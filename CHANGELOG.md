@@ -3,6 +3,7 @@
 ## 0.1.1-beta
 
 - Water buckets are now treated as tools and kept on death.
+- Fixed totems of undying voiding kept inventory items.
 
 ## 0.1.0-beta
 

@@ -4,10 +4,14 @@ import com.akitain.fairlands.config.FairlandsConfig;
 import com.akitain.fairlands.rule.FairlandsGameRules;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.minecraft.core.Holder;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -30,7 +34,9 @@ public final class DeathRules {
 
     public static void register() {
         ServerPlayerEvents.ALLOW_DEATH.register((player, damageSource, damageAmount) -> {
-            captureKeptItems(player);
+            if (!willDeathProtectionTrigger(player, damageSource)) {
+                captureKeptItems(player);
+            }
             return true;
         });
 
@@ -41,6 +47,20 @@ public final class DeathRules {
 
         ServerPlayerEvents.JOIN.register(DeathRules::restoreKeptItems);
         ServerPlayerEvents.LEAVE.register(DeathRules::restoreKeptItems);
+    }
+
+    private static boolean willDeathProtectionTrigger(ServerPlayer player, DamageSource damageSource) {
+        if (damageSource.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
+            return false;
+        }
+
+        for (InteractionHand hand : InteractionHand.values()) {
+            if (player.getItemInHand(hand).has(DataComponents.DEATH_PROTECTION)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private static void captureKeptItems(ServerPlayer player) {
