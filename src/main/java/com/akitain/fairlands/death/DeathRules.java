@@ -129,6 +129,7 @@ public final class DeathRules {
                 || stack.getItem() == Items.FISHING_ROD
                 || stack.getItem() == Items.BRUSH
                 || stack.is(ConventionalItemTags.BUCKETS)
+                || stack.has(DataComponents.GLIDER)
                 || stack.getItem() == Items.CARROT_ON_A_STICK
                 || stack.getItem() == Items.WARPED_FUNGUS_ON_A_STICK;
     }

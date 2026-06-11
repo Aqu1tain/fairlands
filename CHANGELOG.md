@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.3-beta
+
+- Elytra and other glider items are now treated as tools and kept on death.
+
 ## 0.1.2-beta
 
 - Fixed totems of undying voiding kept inventory items.
