@@ -4,6 +4,7 @@
 
 - Spawn safe zone now applies only in the Overworld.
 - Spawn safe zone radius (PVP, explosions, and wither spawning) is now 700 blocks by default, down from 2000. The respawn setup restriction keeps its own 2000-block radius and still applies in all dimensions.
+- The spawn protection message now shows above the hotbar and fades out instead of appearing in chat.
 
 ## 0.1.3-beta
 

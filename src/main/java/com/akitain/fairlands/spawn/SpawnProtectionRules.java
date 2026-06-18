@@ -67,7 +67,7 @@ public final class SpawnProtectionRules {
 
     private static void sendProtectedSpawnMessage(Player player) {
         if (player instanceof ServerPlayer serverPlayer) {
-            serverPlayer.sendSystemMessage(PROTECTED_SPAWN_MESSAGE);
+            serverPlayer.sendOverlayMessage(PROTECTED_SPAWN_MESSAGE);
         }
     }
 }
