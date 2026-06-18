@@ -58,19 +58,21 @@ Default kept tool/weapon groups include swords, axes, pickaxes, shovels, hoes, s
 ### Respawn Setup
 
 - Restricts respawn point setup to a configurable radius around world spawn.
-- Default radius is 2000 blocks.
+- Default radius is 2000 blocks, configurable with `fairlands:respawn_setup_radius`.
+- Applies in all dimensions.
 - Beds can still be slept in outside the allowed area.
 - Beds and respawn anchors outside the allowed area do not set the player's respawn point.
 - Players receive a chat message when a respawn point is blocked.
 
 ### Spawn Safe Zone
 
-- Uses the same world-spawn-centered radius model as respawn setup.
-- Default radius is 2000 blocks.
+- Only applies in the Overworld.
+- Default radius is 700 blocks.
 - Blocks PVP inside the protected zone.
 - Prevents destructive explosions from breaking blocks inside the protected zone.
 - Blocks wither spawning inside the protected zone.
 - Does not block normal player building or mining.
+- The respawn setup restriction uses its own larger radius, so only bed and respawn anchor spawn points are limited beyond the safe zone.
 
 For local dedicated-server testing, vanilla `spawn-protection` in `run/server.properties` should be `0`; Fairlands' spawn safe zone handles gameplay protection separately.
 
@@ -173,7 +175,7 @@ Fairlands writes its config through MidnightLib. Current config options cover de
 /gamerule fairlands:creeper_block_damage false
 /gamerule fairlands:creeper_explosion_radius_bonus 1
 /gamerule fairlands:spawn_protection true
-/gamerule fairlands:spawn_protection_radius 2000
+/gamerule fairlands:spawn_protection_radius 700
 /gamerule fairlands:spawn_protection_pvp true
 /gamerule fairlands:spawn_protection_grief true
 /gamerule fairlands:spawn_protection_explosions true

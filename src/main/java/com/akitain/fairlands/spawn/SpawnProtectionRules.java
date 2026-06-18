@@ -57,7 +57,7 @@ public final class SpawnProtectionRules {
     }
 
     private static boolean isProtected(ServerLevel level, BlockPos pos) {
-        if (!FairlandsGameRules.spawnProtectionEnabled(level)) {
+        if (!SpawnAreaRules.isOverworld(level) || !FairlandsGameRules.spawnProtectionEnabled(level)) {
             return false;
         }
 

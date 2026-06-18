@@ -2,9 +2,14 @@ package com.akitain.fairlands.spawn;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.Level;
 
 public final class SpawnAreaRules {
     private SpawnAreaRules() {
+    }
+
+    public static boolean isOverworld(ServerLevel level) {
+        return level.dimension() == Level.OVERWORLD;
     }
 
     public static boolean isWithinRadius(ServerLevel level, BlockPos pos, int radius) {

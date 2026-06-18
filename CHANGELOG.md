@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.4-beta
+
+- Spawn safe zone now applies only in the Overworld.
+- Spawn safe zone radius (PVP, explosions, and wither spawning) is now 700 blocks by default, down from 2000. The respawn setup restriction keeps its own 2000-block radius and still applies in all dimensions.
+
 ## 0.1.3-beta
 
 - Elytra and other glider items are now treated as tools and kept on death.

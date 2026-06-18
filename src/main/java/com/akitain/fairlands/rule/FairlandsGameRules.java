@@ -53,7 +53,7 @@ public final class FairlandsGameRules {
             .buildAndRegister(Fairlands.id("spawn_protection"));
 
     public static final GameRule<Integer> SPAWN_PROTECTION_RADIUS = GameRuleBuilder
-            .forInteger(2000)
+            .forInteger(700)
             .range(0, 100000)
             .category(GameRuleCategory.PLAYER)
             .buildAndRegister(Fairlands.id("spawn_protection_radius"));
