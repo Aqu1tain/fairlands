@@ -8,91 +8,84 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-
 public final class DeathRules {
-    private static final Map<UUID, PendingDeathRules> PENDING_DEATH_RULES = new HashMap<>();
-
     private DeathRules() {
     }
 
     public static void register() {
-        ServerPlayerEvents.ALLOW_DEATH.register((player, damageSource, damageAmount) -> {
-            if (!willDeathProtectionTrigger(player, damageSource)) {
-                captureKeptItems(player);
-            }
-            return true;
-        });
-
         ServerPlayerEvents.AFTER_RESPAWN.register((oldPlayer, newPlayer, alive) -> {
-            restoreKeptItems(newPlayer);
-            if (!alive) {
-                applyDeathPenalty(newPlayer);
+            if (alive) {
+                return;
             }
+
+            if (FairlandsGameRules.partialKeepInventoryEnabled(newPlayer.level())) {
+                transferKeptItems(oldPlayer, newPlayer);
+                restoreKeptExperience(newPlayer, calculateKeptExperience(oldPlayer));
+            }
+
+            applyDeathPenalty(newPlayer);
         });
-
-        ServerPlayerEvents.JOIN.register(DeathRules::restoreKeptItems);
-        ServerPlayerEvents.LEAVE.register(DeathRules::restoreKeptItems);
     }
 
-    private static boolean willDeathProtectionTrigger(ServerPlayer player, DamageSource damageSource) {
-        if (damageSource.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
-            return false;
-        }
-
-        for (InteractionHand hand : InteractionHand.values()) {
-            if (player.getItemInHand(hand).has(DataComponents.DEATH_PROTECTION)) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    private static void captureKeptItems(ServerPlayer player) {
-        restorePendingItems(player);
-
-        if (!FairlandsGameRules.partialKeepInventoryEnabled(player.level())) {
+    // Replaces the vanilla on-death inventory drop: kept items stay in the inventory so they
+    // survive a crash or disconnect on the death screen, then move to the respawn player intact.
+    public static void dropNonKeptItems(Player player, Inventory inventory) {
+        if (!(player.level() instanceof ServerLevel level) || !FairlandsGameRules.partialKeepInventoryEnabled(level)) {
+            inventory.dropAll();
             return;
         }
-
-        Inventory inventory = player.getInventory();
-        List<KeptItem> keptItems = new ArrayList<>();
 
         for (int slot = 0; slot < inventory.getContainerSize(); slot++) {
             ItemStack stack = inventory.getItem(slot);
-            if (stack.isEmpty() || !shouldKeepItem(slot, stack)) {
+            if (stack.isEmpty() || shouldKeepItem(slot, stack)) {
                 continue;
             }
 
-            keptItems.add(new KeptItem(slot, stack.copy()));
+            player.drop(stack, true, false);
             inventory.setItem(slot, ItemStack.EMPTY);
         }
 
-        int keptExperience = calculateKeptExperience(player);
-        if (keptItems.isEmpty() && keptExperience <= 0) {
+        inventory.setChanged();
+    }
+
+    private static void transferKeptItems(ServerPlayer oldPlayer, ServerPlayer newPlayer) {
+        Inventory from = oldPlayer.getInventory();
+        Inventory to = newPlayer.getInventory();
+
+        for (int slot = 0; slot < from.getContainerSize(); slot++) {
+            ItemStack stack = from.getItem(slot);
+            if (stack.isEmpty()) {
+                continue;
+            }
+
+            restoreToInventory(newPlayer, to, slot, stack.copy());
+            from.setItem(slot, ItemStack.EMPTY);
+        }
+
+        to.setChanged();
+    }
+
+    private static void restoreToInventory(ServerPlayer player, Inventory inventory, int slot, ItemStack stack) {
+        if (slot >= 0 && slot < inventory.getContainerSize() && inventory.getItem(slot).isEmpty()) {
+            inventory.setItem(slot, stack);
             return;
         }
 
-        inventory.setChanged();
-        PENDING_DEATH_RULES.put(player.getUUID(), new PendingDeathRules(keptItems, keptExperience));
+        if (!inventory.add(stack) && !stack.isEmpty()) {
+            player.drop(stack, false, true);
+        }
     }
 
     private static boolean shouldKeepItem(int slot, ItemStack stack) {
@@ -149,34 +142,6 @@ public final class DeathRules {
         return false;
     }
 
-    private static void restoreKeptItems(ServerPlayer player) {
-        PendingDeathRules pendingRules = PENDING_DEATH_RULES.remove(player.getUUID());
-        if (pendingRules == null) {
-            return;
-        }
-
-        restoreKeptItems(player, pendingRules.keptItems());
-        restoreKeptExperience(player, pendingRules.keptExperience());
-    }
-
-    private static void restorePendingItems(ServerPlayer player) {
-        PendingDeathRules pendingRules = PENDING_DEATH_RULES.remove(player.getUUID());
-        if (pendingRules == null) {
-            return;
-        }
-
-        restoreKeptItems(player, pendingRules.keptItems());
-    }
-
-    private static void restoreKeptItems(ServerPlayer player, List<KeptItem> keptItems) {
-        Inventory inventory = player.getInventory();
-        for (KeptItem keptItem : keptItems) {
-            restoreKeptItem(player, inventory, keptItem);
-        }
-
-        inventory.setChanged();
-    }
-
     private static int calculateKeptExperience(ServerPlayer player) {
         int keptPercent = FairlandsGameRules.deathXpKeepPercent(player.level());
         int percentageKeptExperience = Math.floorDiv(player.totalExperience * keptPercent, 100);
@@ -198,22 +163,6 @@ public final class DeathRules {
         player.giveExperiencePoints(keptExperience);
     }
 
-    private static void restoreKeptItem(ServerPlayer player, Inventory inventory, KeptItem keptItem) {
-        ItemStack stack = keptItem.stack().copy();
-        if (canRestoreToOriginalSlot(inventory, keptItem.slot())) {
-            inventory.setItem(keptItem.slot(), stack);
-            return;
-        }
-
-        if (!inventory.add(stack) && !stack.isEmpty()) {
-            player.drop(stack, false, true);
-        }
-    }
-
-    private static boolean canRestoreToOriginalSlot(Inventory inventory, int slot) {
-        return slot >= 0 && slot < inventory.getContainerSize() && inventory.getItem(slot).isEmpty();
-    }
-
     private static void applyDeathPenalty(ServerPlayer player) {
         if (!FairlandsConfig.deathPenaltyEnabled || player.isCreative() || player.isSpectator()) {
             return;
@@ -233,11 +182,5 @@ public final class DeathRules {
         return BuiltInRegistries.MOB_EFFECT.get(effectId)
                 .map(effect -> (Holder<MobEffect>) effect)
                 .orElse(MobEffects.WEAKNESS);
-    }
-
-    private record KeptItem(int slot, ItemStack stack) {
-    }
-
-    private record PendingDeathRules(List<KeptItem> keptItems, int keptExperience) {
     }
 }

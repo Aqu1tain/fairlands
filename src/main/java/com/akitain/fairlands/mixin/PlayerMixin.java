@@ -1,11 +1,14 @@
 package com.akitain.fairlands.mixin;
 
+import com.akitain.fairlands.death.DeathRules;
 import com.akitain.fairlands.rule.FairlandsGameRules;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Player.class)
@@ -19,5 +22,10 @@ public abstract class PlayerMixin {
         Player player = (Player) (Object) this;
         int uncappedReward = player.experienceLevel * 7;
         callbackInfo.setReturnValue(Math.min(uncappedReward, FairlandsGameRules.deathXpDropCap(level)));
+    }
+
+    @Redirect(method = "dropEquipment", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Inventory;dropAll()V"))
+    private void fairlands$keepItemsOnDeath(Inventory inventory) {
+        DeathRules.dropNonKeptItems((Player) (Object) this, inventory);
     }
 }

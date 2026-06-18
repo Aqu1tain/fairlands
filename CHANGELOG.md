@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.5-beta
+
+- Fixed Partial KeepInventory losing kept items (armor, tools, and other keepables) on a server crash or a disconnect on the death screen. Kept items now stay in the inventory through death instead of being held in memory, so they survive crashes and relogs.
+
 ## 0.1.4-beta
 
 - Spawn safe zone now applies only in the Overworld.
