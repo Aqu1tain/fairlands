@@ -123,6 +123,14 @@ These caps only apply when the damaged entity is a player.
 - Players with the Invisibility effect are hidden from other players' tab list.
 - Visibility is resynced when the effect changes and when players join.
 
+### Visible Player Count
+
+- Enabled by default with `fairlands:hide_invisible_players_from_count`.
+- The server-list ping reports only visible players: players with the Invisibility effect are excluded from the online count and the player sample.
+- This is what Discord bots and server-list tools read when they ping the server. The count refreshes within about 5 seconds of an invisibility change (vanilla status cache interval).
+- Other mods can read the same value directly: `com.akitain.fairlands.visibility.PlayerVisibility.visiblePlayerCount(server)` and `visiblePlayers(server)`.
+- Note: this adjusts the status/ping count only. The Query protocol and RCON `list` still report the raw count.
+
 ### World Progression
 
 - Enabled by default with `fairlands:world_progression`.
@@ -185,6 +193,7 @@ Fairlands writes its config through MidnightLib. Current config options cover de
 /gamerule fairlands:mace_smash_player_damage_cap 16
 /gamerule fairlands:spear_player_damage_cap 14
 /gamerule fairlands:hide_invisible_players_from_tab true
+/gamerule fairlands:hide_invisible_players_from_count true
 /gamerule fairlands:world_progression true
 /gamerule fairlands:ore_progression_inner_radius 2000
 /gamerule fairlands:ore_progression_normal_radius 6000

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.6-beta
+
+- Added a visible player count: the server-list ping now excludes invisible players from the online count and sample, gated by `fairlands:hide_invisible_players_from_count` (default on). Exposes `PlayerVisibility.visiblePlayerCount`/`visiblePlayers` for other mods, and a count Discord bots can read by pinging the server.
+
 ## 0.1.5-beta
 
 - Fixed Partial KeepInventory losing kept items (armor, tools, and other keepables) on a server crash or a disconnect on the death screen. Kept items now stay in the inventory through death instead of being held in memory, so they survive crashes and relogs.

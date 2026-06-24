@@ -108,6 +108,11 @@ public final class FairlandsGameRules {
             .category(GameRuleCategory.PLAYER)
             .buildAndRegister(Fairlands.id("hide_invisible_players_from_tab"));
 
+    public static final GameRule<Boolean> HIDE_INVISIBLE_PLAYERS_FROM_COUNT = GameRuleBuilder
+            .forBoolean(true)
+            .category(GameRuleCategory.PLAYER)
+            .buildAndRegister(Fairlands.id("hide_invisible_players_from_count"));
+
     public static final GameRule<Boolean> WORLD_PROGRESSION = GameRuleBuilder
             .forBoolean(true)
             .category(GameRuleCategory.UPDATES)
@@ -234,6 +239,10 @@ public final class FairlandsGameRules {
 
     public static boolean hideInvisiblePlayersFromTabEnabled(ServerLevel level) {
         return level.getGameRules().get(HIDE_INVISIBLE_PLAYERS_FROM_TAB);
+    }
+
+    public static boolean hideInvisiblePlayersFromCountEnabled(ServerLevel level) {
+        return level.getGameRules().get(HIDE_INVISIBLE_PLAYERS_FROM_COUNT);
     }
 
     public static boolean worldProgressionEnabled(ServerLevel level) {

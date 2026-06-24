@@ -6,6 +6,7 @@
         "ClientboundPlayerInfoUpdatePacketAccessor",
         "CreeperMixin",
         "LivingEntityMixin",
+        "MinecraftServerStatusMixin",
         "OreFeatureMixin",
         "PlayerMixin",
         "RespawnAnchorBlockMixin",
