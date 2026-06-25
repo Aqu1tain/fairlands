@@ -121,6 +121,7 @@ These caps only apply when the damaged entity is a player.
 
 - Enabled by default with `fairlands:hide_invisible_players_from_tab`.
 - Players with the Invisibility effect are hidden from other players' tab list.
+- A hidden player still sees their own entry, shown in italic, as a reminder that others cannot see them.
 - Visibility is resynced when the effect changes and when players join.
 
 ### World Progression

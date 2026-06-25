@@ -4,7 +4,9 @@ import com.akitain.fairlands.mixin.ClientboundPlayerInfoUpdatePacketAccessor;
 import com.akitain.fairlands.rule.FairlandsGameRules;
 import java.util.List;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
+import net.minecraft.ChatFormatting;
 import net.minecraft.Optionull;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.RemoteChatSession;
 import net.minecraft.network.protocol.game.ClientboundPlayerInfoUpdatePacket;
 import net.minecraft.server.level.ServerPlayer;
@@ -26,6 +28,8 @@ public final class TabVisibilityRules {
                 sendListedStatus(viewer, player, listed);
             }
         }
+
+        sendSelfDisplayName(player, !listed);
     }
 
     private static void syncJoinedPlayer(ServerPlayer player) {
@@ -42,6 +46,21 @@ public final class TabVisibilityRules {
         return !FairlandsGameRules.hideInvisiblePlayersFromTabEnabled(player.level()) || !player.hasEffect(MobEffects.INVISIBILITY);
     }
 
+    // A hidden player still sees their own tab entry, shown in italic as a reminder that others cannot see them.
+    private static void sendSelfDisplayName(ServerPlayer player, boolean hidden) {
+        Component displayName = hidden
+                ? player.getName().copy().withStyle(ChatFormatting.ITALIC)
+                : player.getTabListDisplayName();
+
+        ClientboundPlayerInfoUpdatePacket packet = new ClientboundPlayerInfoUpdatePacket(
+                ClientboundPlayerInfoUpdatePacket.Action.UPDATE_DISPLAY_NAME,
+                player
+        );
+
+        ((ClientboundPlayerInfoUpdatePacketAccessor) packet).fairlands$setEntries(List.of(createEntry(player, true, displayName)));
+        player.connection.send(packet);
+    }
+
     private static void sendListedStatus(ServerPlayer viewer, ServerPlayer subject, boolean listed) {
         ClientboundPlayerInfoUpdatePacket packet = new ClientboundPlayerInfoUpdatePacket(
                 ClientboundPlayerInfoUpdatePacket.Action.UPDATE_LISTED,
@@ -53,6 +72,10 @@ public final class TabVisibilityRules {
     }
 
     private static ClientboundPlayerInfoUpdatePacket.Entry createEntry(ServerPlayer player, boolean listed) {
+        return createEntry(player, listed, player.getTabListDisplayName());
+    }
+
+    private static ClientboundPlayerInfoUpdatePacket.Entry createEntry(ServerPlayer player, boolean listed, Component displayName) {
         RemoteChatSession.Data chatSession = Optionull.map(player.getChatSession(), RemoteChatSession::asData);
         return new ClientboundPlayerInfoUpdatePacket.Entry(
                 player.getUUID(),
@@ -60,7 +83,7 @@ public final class TabVisibilityRules {
                 listed,
                 player.connection.latency(),
                 player.gameMode(),
-                player.getTabListDisplayName(),
+                displayName,
                 player.isModelPartShown(PlayerModelPart.HAT),
                 player.getTabListOrder(),
                 chatSession

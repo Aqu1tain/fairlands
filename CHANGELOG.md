@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.6-beta
+
+- A hidden (invisible) player now still sees their own tab entry, shown in italic, while remaining hidden from everyone else's tab list.
+
 ## 0.1.5-beta
 
 - Fixed Partial KeepInventory losing kept items (armor, tools, and other keepables) on a server crash or a disconnect on the death screen. Kept items now stay in the inventory through death instead of being held in memory, so they survive crashes and relogs.
