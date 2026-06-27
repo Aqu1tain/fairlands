@@ -3,6 +3,7 @@
 ## 0.1.6-beta
 
 - Added a visible player count: the server-list ping now excludes invisible players from the online count and sample, gated by `fairlands:hide_invisible_players_from_count` (default on). Exposes `PlayerVisibility.visiblePlayerCount`/`visiblePlayers` for other mods, and a count Discord bots can read by pinging the server.
+- A hidden (invisible) player now still sees their own tab entry, shown in italic, while remaining hidden from everyone else's tab list.
 
 ## 0.1.5-beta
 
