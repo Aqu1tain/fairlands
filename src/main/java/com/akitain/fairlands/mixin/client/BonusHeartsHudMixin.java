@@ -27,6 +27,12 @@ public abstract class BonusHeartsHudMixin {
     private static final Identifier NAVY_FULL_BLINKING = Fairlands.id("hud/heart/navy_full_blinking");
     @Unique
     private static final Identifier NAVY_HALF_BLINKING = Fairlands.id("hud/heart/navy_half_blinking");
+    // A slow swell that travels along the row, so the liquid hearts never sit perfectly still.
+    @Unique
+    private static final double WAVE_PERIOD_MS = 1900.0;
+    @Unique
+    private static final double WAVE_PHASE_PER_HEART = 0.8;
+
     @Unique
     private static final Identifier CONTAINER = Identifier.withDefaultNamespace("hud/heart/container");
     @Unique
@@ -68,20 +74,25 @@ public abstract class BonusHeartsHudMixin {
                 yo -= 2;
             }
 
-            // The vanilla red heart is still painted underneath, so while the heart is jittering we first
-            // repaint the empty container over it, otherwise red bleeds out from behind the offset sprite.
-            int shake = BonusHeartsShake.offset();
-            if (shake != 0) {
-                boolean hardcore = player.level().getLevelData().isHardcore();
-                graphics.blitSprite(RenderPipelines.GUI_TEXTURED,
-                        hardcore ? CONTAINER_HARDCORE : CONTAINER, restingX, yo, 9, 9);
-            }
+            // The vanilla red heart sits underneath, so repaint the empty container over it before drawing
+            // ours anywhere but dead centre, otherwise red bleeds out from behind the moving sprite.
+            boolean hardcore = player.level().getLevelData().isHardcore();
+            graphics.blitSprite(RenderPipelines.GUI_TEXTURED,
+                    hardcore ? CONTAINER_HARDCORE : CONTAINER, restingX, yo, 9, 9);
 
             boolean half = halves + 1 == currentHealth;
             Identifier sprite = blink
                     ? (half ? NAVY_HALF_BLINKING : NAVY_FULL_BLINKING)
                     : (half ? NAVY_HALF : NAVY_FULL);
-            graphics.blitSprite(RenderPipelines.GUI_TEXTURED, sprite, restingX + shake, yo, 9, 9);
+            graphics.blitSprite(RenderPipelines.GUI_TEXTURED, sprite,
+                    restingX + BonusHeartsShake.offset(), yo + waveOffset(containerIndex), 9, 9);
         }
+    }
+
+    @Unique
+    private static int waveOffset(int containerIndex) {
+        double phase = System.currentTimeMillis() / WAVE_PERIOD_MS * (Math.PI * 2.0)
+                - containerIndex * WAVE_PHASE_PER_HEART;
+        return (int) Math.round(Math.sin(phase));
     }
 }
