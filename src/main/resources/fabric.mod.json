@@ -3,7 +3,7 @@
     "id": "fairlands",
     "version": "${version}",
     "name": "Fairlands",
-    "description": "Server-side survival rules for fair deaths, protected spawns, balanced PVP, and exploration-driven worlds.",
+    "description": "Survival rules for fair deaths, protected spawns, balanced PVP, and exploration-driven worlds.",
     "authors": ["Aqu1tain"],
     "contact": {
         "sources": "https://github.com/Aqu1tain/fairlands"
