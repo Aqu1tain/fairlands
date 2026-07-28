@@ -69,7 +69,9 @@ public final class BonusHeartsRules {
         maxHealth.removeModifier(MODIFIER_ID);
         int hearts = Math.min(getHearts(player), maxHearts());
         if (hearts > 0) {
-            maxHealth.addOrUpdateTransientModifier(new AttributeModifier(
+            // Permanent, not transient: saved attributes are restored before health is read back, so a
+            // returning player keeps their bonus hearts filled instead of being clamped to the base maximum.
+            maxHealth.addOrReplacePermanentModifier(new AttributeModifier(
                     MODIFIER_ID, hearts * HEALTH_PER_HEART, AttributeModifier.Operation.ADD_VALUE));
         }
 
