@@ -28,7 +28,7 @@
   "gamerule.fairlands:world_progression": "Fairlands world progression",
   "message.fairlands.respawn_setup_restricted": "Your respawn point must be within %s blocks of world spawn.",
   "tag.item.fairlands.keep_on_death": "Kept on death",
-  "item.fairlands.vitality_shard": "Vitality Shard",
-  "item.fairlands.vitality_shard.gained": "Bonus hearts: %s",
-  "item.fairlands.vitality_shard.full": "You already carry the maximum of %s bonus hearts"
+  "item.fairlands.vitality_shard": "Fragment de vitalité",
+  "item.fairlands.vitality_shard.gained": "Cœurs bonus : %s",
+  "item.fairlands.vitality_shard.full": "Vous portez déjà le maximum de %s cœurs bonus"
 }
