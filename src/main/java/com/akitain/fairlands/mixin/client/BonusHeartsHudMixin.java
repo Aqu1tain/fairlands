@@ -29,7 +29,7 @@ public abstract class BonusHeartsHudMixin {
     private static final Identifier NAVY_HALF_BLINKING = Fairlands.id("hud/heart/navy_half_blinking");
     // A slow swell that travels along the row, so the liquid hearts never sit perfectly still.
     @Unique
-    private static final double WAVE_PERIOD_MS = 1900.0;
+    private static final double WAVE_PERIOD_MS = 1100.0;
     @Unique
     private static final double WAVE_PHASE_PER_HEART = 0.8;
 
