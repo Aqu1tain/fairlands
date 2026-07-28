@@ -15,6 +15,9 @@
         "ServerPlayerMixin",
         "WitherSkullBlockMixin"
     ],
+    "client": [
+        "client.BonusHeartsHudMixin"
+    ],
     "injectors": {
         "defaultRequire": 1
     }

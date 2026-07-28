@@ -4,7 +4,9 @@ import com.akitain.fairlands.Fairlands;
 import com.akitain.fairlands.config.FairlandsConfig;
 import com.mojang.serialization.Codec;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry;
+import net.fabricmc.fabric.api.attachment.v1.AttachmentSyncPredicate;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentType;
+import net.minecraft.network.codec.ByteBufCodecs;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.resources.Identifier;
@@ -21,6 +23,7 @@ public final class BonusHeartsRules {
 
     public static final AttachmentType<Integer> BONUS_HEARTS = AttachmentRegistry.<Integer>builder()
             .persistent(Codec.INT)
+            .syncWith(ByteBufCodecs.VAR_INT.cast(), AttachmentSyncPredicate.targetOnly())
             .initializer(() -> 0)
             .buildAndRegister(Fairlands.id("bonus_hearts"));
 
