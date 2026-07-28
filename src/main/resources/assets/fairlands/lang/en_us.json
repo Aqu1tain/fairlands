@@ -29,8 +29,6 @@
   "message.fairlands.respawn_setup_restricted": "Your respawn point must be within %s blocks of world spawn.",
   "tag.item.fairlands.keep_on_death": "Kept on death",
   "effect.fairlands.tidal_blessing": "Tidal Blessing",
-  "effect.fairlands.tidal_blessing.gained": "Bonus hearts: %s",
-  "effect.fairlands.tidal_blessing.full": "You already carry the maximum of %s bonus hearts",
   "item.minecraft.potion.effect.tidal_draught": "Tidal Draught",
   "item.minecraft.splash_potion.effect.tidal_draught": "Splash Tidal Draught",
   "item.minecraft.lingering_potion.effect.tidal_draught": "Lingering Tidal Draught",

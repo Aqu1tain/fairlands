@@ -2,6 +2,7 @@ package com.akitain.fairlands.mixin.client;
 
 import com.akitain.fairlands.Fairlands;
 import com.akitain.fairlands.health.BonusHeartsRules;
+import com.akitain.fairlands.health.BonusHeartsShake;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.renderer.RenderPipelines;
@@ -57,7 +58,7 @@ public abstract class BonusHeartsHudMixin {
 
             int row = containerIndex / 10;
             int column = containerIndex % 10;
-            int xo = xLeft + column * 8;
+            int xo = xLeft + column * 8 + BonusHeartsShake.offset();
             int yo = yLineBase - row * healthRowHeight;
             if (containerIndex == heartOffsetIndex) {
                 yo -= 2;
