@@ -27,6 +27,10 @@ public abstract class BonusHeartsHudMixin {
     private static final Identifier NAVY_FULL_BLINKING = Fairlands.id("hud/heart/navy_full_blinking");
     @Unique
     private static final Identifier NAVY_HALF_BLINKING = Fairlands.id("hud/heart/navy_half_blinking");
+    @Unique
+    private static final Identifier CONTAINER = Identifier.withDefaultNamespace("hud/heart/container");
+    @Unique
+    private static final Identifier CONTAINER_HARDCORE = Identifier.withDefaultNamespace("hud/heart/container_hardcore");
 
     @Inject(method = "extractHearts", at = @At("TAIL"))
     private void fairlands$paintBonusHearts(
@@ -58,17 +62,26 @@ public abstract class BonusHeartsHudMixin {
 
             int row = containerIndex / 10;
             int column = containerIndex % 10;
-            int xo = xLeft + column * 8 + BonusHeartsShake.offset();
+            int restingX = xLeft + column * 8;
             int yo = yLineBase - row * healthRowHeight;
             if (containerIndex == heartOffsetIndex) {
                 yo -= 2;
+            }
+
+            // The vanilla red heart is still painted underneath, so while the heart is jittering we first
+            // repaint the empty container over it, otherwise red bleeds out from behind the offset sprite.
+            int shake = BonusHeartsShake.offset();
+            if (shake != 0) {
+                boolean hardcore = player.level().getLevelData().isHardcore();
+                graphics.blitSprite(RenderPipelines.GUI_TEXTURED,
+                        hardcore ? CONTAINER_HARDCORE : CONTAINER, restingX, yo, 9, 9);
             }
 
             boolean half = halves + 1 == currentHealth;
             Identifier sprite = blink
                     ? (half ? NAVY_HALF_BLINKING : NAVY_FULL_BLINKING)
                     : (half ? NAVY_HALF : NAVY_FULL);
-            graphics.blitSprite(RenderPipelines.GUI_TEXTURED, sprite, xo, yo, 9, 9);
+            graphics.blitSprite(RenderPipelines.GUI_TEXTURED, sprite, restingX + shake, yo, 9, 9);
         }
     }
 }
