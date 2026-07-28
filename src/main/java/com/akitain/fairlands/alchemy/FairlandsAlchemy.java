@@ -17,7 +17,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 
 public final class FairlandsAlchemy {
     // Matches the blue used for the bonus hearts on the HUD.
-    private static final int TIDAL_COLOR = 0x6EAFFF;
+    private static final int TIDAL_COLOR = 0x60A5FA;
 
     public static final Holder<MobEffect> TIDAL_BLESSING = Registry.registerForHolder(
             BuiltInRegistries.MOB_EFFECT,
