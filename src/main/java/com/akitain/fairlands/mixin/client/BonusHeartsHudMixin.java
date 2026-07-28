@@ -32,6 +32,8 @@ public abstract class BonusHeartsHudMixin {
     private static final double WAVE_PERIOD_MS = 1100.0;
     @Unique
     private static final double WAVE_PHASE_PER_HEART = 0.8;
+    @Unique
+    private static final double WAVE_CREST = 0.65;
 
     @Unique
     private static final Identifier CONTAINER = Identifier.withDefaultNamespace("hud/heart/container");
@@ -89,10 +91,12 @@ public abstract class BonusHeartsHudMixin {
         }
     }
 
+    // Only the crest of the wave lifts a heart, and only upwards: each one sits still most of the cycle
+    // so the row reads as a slow ripple passing through rather than hearts bobbing constantly.
     @Unique
     private static int waveOffset(int containerIndex) {
         double phase = System.currentTimeMillis() / WAVE_PERIOD_MS * (Math.PI * 2.0)
                 - containerIndex * WAVE_PHASE_PER_HEART;
-        return (int) Math.round(Math.sin(phase));
+        return Math.sin(phase) > WAVE_CREST ? -1 : 0;
     }
 }
