@@ -62,7 +62,11 @@ java {
 }
 
 jar {
+    // LGPL-3.0 is defined as a set of additional permissions on top of GPL-3.0, so both texts ship.
     from("LICENSE") {
+        rename { "${it}_${project.archives_base_name}" }
+    }
+    from("COPYING") {
         rename { "${it}_${project.archives_base_name}" }
     }
 }

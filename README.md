@@ -252,4 +252,12 @@ The world progression design notes are tracked in `docs/world-progression.md`.
 
 ## License
 
-Fairlands is licensed under CC BY-NC-SA 4.0. See `LICENSE`.
+Copyright (c) 2026 Aqu1tain.
+
+Fairlands is licensed under the GNU Lesser General Public License v3.0 only. See `LICENSE` for the
+LGPL text and `COPYING` for the GPL text it builds on.
+
+It was previously CC BY-NC-SA 4.0. The move to LGPL-3.0 was made so the mod can carry a port of
+[Aileron](https://github.com/OrtusMC/Aileron) and its Fabric rewrite
+[Eleron](https://codeberg.org/sindercube/eleron), both LGPL-3.0-only, whose terms forbid the
+non-commercial restriction the previous license imposed.
