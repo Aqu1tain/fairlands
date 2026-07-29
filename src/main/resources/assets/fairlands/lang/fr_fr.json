@@ -28,9 +28,9 @@
   "gamerule.fairlands:world_progression": "Fairlands world progression",
   "message.fairlands.respawn_setup_restricted": "Your respawn point must be within %s blocks of world spawn.",
   "tag.item.fairlands.keep_on_death": "Kept on death",
-  "effect.fairlands.tidal_blessing": "Tidal Blessing",
-  "item.minecraft.potion.effect.tidal_draught": "Tidal Draught",
-  "item.minecraft.splash_potion.effect.tidal_draught": "Splash Tidal Draught",
-  "item.minecraft.lingering_potion.effect.tidal_draught": "Lingering Tidal Draught",
-  "item.minecraft.tipped_arrow.effect.tidal_draught": "Arrow of the Tides"
+  "effect.fairlands.tidal_blessing": "Bénédiction des marées",
+  "item.minecraft.potion.effect.tidal_draught": "Breuvage des marées",
+  "item.minecraft.splash_potion.effect.tidal_draught": "Breuvage des marées jetable",
+  "item.minecraft.lingering_potion.effect.tidal_draught": "Breuvage des marées persistant",
+  "item.minecraft.tipped_arrow.effect.tidal_draught": "Flèche des marées"
 }

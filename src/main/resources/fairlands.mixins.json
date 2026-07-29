@@ -11,9 +11,13 @@
         "PlayerMixin",
         "RespawnAnchorBlockMixin",
         "ServerLevelMixin",
-        "ServerPlayerVisibilityMixin",
         "ServerPlayerMixin",
+        "ServerPlayerVisibilityMixin",
+        "TidalDraughtUseMixin",
         "WitherSkullBlockMixin"
+    ],
+    "client": [
+        "client.BonusHeartsHudMixin"
     ],
     "injectors": {
         "defaultRequire": 1
