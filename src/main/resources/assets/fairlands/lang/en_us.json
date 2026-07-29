@@ -20,7 +20,7 @@
   "gamerule.fairlands:respawn_setup_radius": "Fairlands respawn setup radius",
   "gamerule.fairlands:spawn_protection": "Fairlands spawn protection",
   "gamerule.fairlands:spawn_protection_explosions": "Fairlands spawn protection explosions",
-  "gamerule.fairlands:spawn_protection_grief": "Fairlands spawn protection explosions",
+  "gamerule.fairlands:spawn_protection_grief": "Fairlands spawn protection griefing",
   "gamerule.fairlands:spawn_protection_pvp": "Fairlands spawn protection PVP",
   "gamerule.fairlands:spawn_protection_radius": "Fairlands spawn protection radius",
   "gamerule.fairlands:spear_player_damage_cap": "Fairlands spear player damage cap",
